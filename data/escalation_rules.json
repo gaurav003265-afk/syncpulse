@@ -1,0 +1,567 @@
+{
+  "version": "1.0.0",
+  "last_updated": "2026-10-20",
+  "description": "Deterministic emergency escalation rules for frontline health workers. Single source of truth.",
+  "rules": [
+    {
+      "rule_id": "ESC-MAT-01",
+      "category": "pregnancy_antenatal",
+      "title": "Vaginal Bleeding in Pregnancy (Antepartum Hemorrhage)",
+      "corpus_citation": "DOC-DANG-03#DANG-01",
+      "action_text": "REFER IMMEDIATELY to First Referral Unit (FRU) / District Hospital. Call 108/102. Keep woman lying flat with feet elevated; do not give oral fluids or perform vaginal exam.",
+      "trigger_terms": [
+        "bleeding in pregnancy", "pregnant bleeding", "bleeding pregnant", "spotting pregnant",
+        "vaginal bleeding", "bleeding per vaginam", "antepartum hemorrhage", "aph",
+        "third trimester bleeding", "second trimester bleeding", "first trimester bleeding",
+        "blood from vagina", "raktham", "rakthasravam", "raktham vasthondi", "rakta sravam",
+        "garbhavathi raktham", "garbham lo raktham", "khoon nikal raha hai", "khoon gir raha hai",
+        "pregnancy me khoon", "pregnancy me bleeding", "raktasrav", "రక్తస్రావం", "రక్తం వస్తుంది",
+        "రక్తం", "गर्भपात", "खून बहना", "रक्तस्राव"
+      ],
+      "proximity_groups": [
+        ["bleeding", "pregnant"],
+        ["bleeding", "pregnancy"],
+        ["bleed", "trimester"],
+        ["bleed", "month"],
+        ["blood", "pregnant"],
+        ["raktham", "garbham"],
+        ["khoon", "garbh"]
+      ]
+    },
+    {
+      "rule_id": "ESC-MAT-02",
+      "category": "pregnancy_antenatal",
+      "title": "Convulsions, Fits or Seizures in Pregnancy (Eclampsia)",
+      "corpus_citation": "DOC-DANG-03#DANG-01",
+      "action_text": "REFER IMMEDIATELY to FRU/Hospital. Call 108. Maintain clear airway, turn woman onto her left side, prevent fall injury, do NOT put fingers or spoon in mouth, do NOT give oral liquids.",
+      "trigger_terms": [
+        "eclampsia", "convulsions in pregnancy", "pregnant convulsions", "fits in pregnancy",
+        "pregnant fits", "seizures in pregnancy", "maternal convulsions", "involuntary spasms",
+        "janni", "murccha", "fits vasthunnayi", "garbhavathi fits", "garbham lo janni",
+        "daure", "jhatke", "mirgi", "pregnancy me fits", "pregnancy me daure", "गर्भावस्था में दौरे",
+        "దౌర్జన్యం", "ఫిట్స్", "మూర్ఛ", "జెన్ని"
+      ],
+      "proximity_groups": [
+        ["fits", "pregnant"],
+        ["convulsion", "pregnancy"],
+        ["seizure", "pregnant"],
+        ["janni", "garbham"],
+        ["daure", "garbh"]
+      ]
+    },
+    {
+      "rule_id": "ESC-MAT-03",
+      "category": "pregnancy_antenatal",
+      "title": "Severe Headache and Visual Disturbances in Pregnancy (Impending Eclampsia)",
+      "corpus_citation": "DOC-DANG-03#DANG-01",
+      "action_text": "REFER IMMEDIATELY to CHC/FRU for blood pressure management and parenteral magnesium sulfate evaluation. Check BP immediately; do not let patient walk.",
+      "trigger_terms": [
+        "severe headache blurred vision", "pregnant severe headache", "headache pregnancy blurred",
+        "spots before eyes pregnancy", "impending eclampsia", "thalanoppi kanti chupulo theda",
+        "theevramaina thalanoppi", "sar dard dhundhla", "pregnancy me tez sir dard",
+        "तीव्र सिरदर्द धुंधला", "తీవ్రమైన తలనొప్పి", "కంటి చూపు మందగించడం"
+      ],
+      "proximity_groups": [
+        ["headache", "blurred", "pregnant"],
+        ["headache", "vision", "pregnancy"],
+        ["headache", "eyes", "pregnant"],
+        ["thalanoppi", "choopu"],
+        ["sir dard", "dhundhla"]
+      ]
+    },
+    {
+      "rule_id": "ESC-MAT-04",
+      "category": "pregnancy_antenatal",
+      "title": "Premature Rupture of Membranes (PROM) / Leaking Amniotic Fluid",
+      "corpus_citation": "DOC-DANG-03#DANG-01",
+      "action_text": "REFER IMMEDIATELY to FRU/Hospital. Risk of ascending cord infection and prolapse. Keep woman lying down; use clean perineal pad.",
+      "trigger_terms": [
+        "water breaking", "leaking fluid pregnancy", "amniotic fluid leak", "prom", "premature rupture of membranes",
+        "water leaking before labor", "neellu karuthunnayi", "neellu karipothunnayi", "pani gir raha hai",
+        "pani nikalna pregnancy", "నీళ్లు కారడం", "पानी छूटना"
+      ],
+      "proximity_groups": [
+        ["water", "leaking", "pregnant"],
+        ["fluid", "leaking", "pregnancy"],
+        ["neellu", "garbham"],
+        ["pani", "garbh"]
+      ]
+    },
+    {
+      "rule_id": "ESC-MAT-05",
+      "category": "pregnancy_antenatal",
+      "title": "Reduced or Absent Fetal Movement",
+      "corpus_citation": "DOC-DANG-03#DANG-01",
+      "action_text": "REFER IMMEDIATELY to FRU/hospital for emergency fetal Doppler / ultrasound / NST evaluation.",
+      "trigger_terms": [
+        "baby not moving", "fetal movement reduced", "no fetal movement", "absent fetal movement",
+        "baby stopped moving", "bidda kadaladam ledhu", "bidda kadalika taggindi", "bacha hil nahi raha",
+        "bacha move nahi kar raha", "బిడ్డ కదలడం లేదు", "बच्चा हिल नहीं रहा"
+      ],
+      "proximity_groups": [
+        ["fetal", "movement", "reduced"],
+        ["baby", "not", "moving"],
+        ["baby", "stopped", "moving"],
+        ["bidda", "kadalika"]
+      ]
+    },
+    {
+      "rule_id": "ESC-MAT-06",
+      "category": "pregnancy_antenatal",
+      "title": "Severe Abdominal Pain in Pregnancy",
+      "corpus_citation": "DOC-DANG-03#DANG-01",
+      "action_text": "REFER IMMEDIATELY to FRU/hospital. Suspect abruption, uterine rupture, or ectopic pregnancy. Do not give pain killers orally.",
+      "trigger_terms": [
+        "severe abdominal pain pregnant", "severe stomach pain pregnancy", "sharp pain abdomen pregnant",
+        "theevramaina kadupu noppi", "garbham lo kadupu noppi", "pet me tez dard pregnancy",
+        "तीव्र पेट दर्द", "తీవ్రమైన కడుపు నొప్పి"
+      ],
+      "proximity_groups": [
+        ["abdominal", "pain", "pregnant"],
+        ["stomach", "pain", "pregnant"],
+        ["kadupu", "noppi", "garbham"],
+        ["pet", "dard", "garbh"]
+      ]
+    },
+    {
+      "rule_id": "ESC-INTRA-01",
+      "category": "labor_delivery",
+      "title": "Prolonged or Obstructed Labor / Cord Prolapse",
+      "corpus_citation": "DOC-DANG-03#DANG-02",
+      "action_text": "REFER IMMEDIATELY to First Referral Unit (CEmONC). Call 108 emergency. If cord prolapsed, place mother in knee-chest position and do not push cord back.",
+      "trigger_terms": [
+        "prolonged labor", "obstructed labor", "labor more than 12 hours", "cord prolapse",
+        "hand prolapse", "foot prolapse", "breech stuck", "prasavam aagipoyindi",
+        "prasavam 12 gantalu datindi", "prasav me rukawat", "ప్రసవంలో అడ్డంకి", "ప్రొలాంగ్డ్ లేబర్"
+      ],
+      "proximity_groups": [
+        ["labor", "12 hours"],
+        ["prolonged", "labor"],
+        ["obstructed", "labor"],
+        ["cord", "prolapse"]
+      ]
+    },
+    {
+      "rule_id": "ESC-POST-01",
+      "category": "postpartum",
+      "title": "Postpartum Hemorrhage (PPH) / Heavy Postnatal Bleeding",
+      "corpus_citation": "DOC-DANG-03#DANG-03",
+      "action_text": "REFER IMMEDIATELY to FRU/District Hospital. Call 108. Massage uterus firmly to stimulate contractions; keep patient warm and feet elevated.",
+      "trigger_terms": [
+        "pph", "postpartum hemorrhage", "bleeding after delivery", "heavy bleeding after childbirth",
+        "soaking 2 pads", "pads soaked within hour", "prasavam taruvatha rakthasravam",
+        "prasav ke baad bleeding", "delivery ke baad khoon", "ప్రసవానంతర రక్తస్రావం", "प्रसवोत्तर रक्तस्राव"
+      ],
+      "proximity_groups": [
+        ["bleeding", "after", "delivery"],
+        ["bleeding", "postpartum"],
+        ["hemorrhage", "delivery"],
+        ["pads", "soaked"],
+        ["raktham", "prasavam"]
+      ]
+    },
+    {
+      "rule_id": "ESC-POST-02",
+      "category": "postpartum",
+      "title": "Postpartum Puerperal Sepsis (Foul Lochia with High Fever)",
+      "corpus_citation": "DOC-DANG-03#DANG-03",
+      "action_text": "REFER IMMEDIATELY to CHC/hospital for antibiotic therapy and pelvic examination. Danger of septic shock.",
+      "trigger_terms": [
+        "foul smelling lochia", "foul vaginal discharge after delivery", "smelly discharge fever postpartum",
+        "kampu vasana fever", "puerperal sepsis", "delivery tharvatha kampu vasana",
+        "durgandh yukt srav bukhar", "దుర్వాసనతో కూడిన స్రావం"
+      ],
+      "proximity_groups": [
+        ["foul", "discharge", "fever"],
+        ["smelly", "discharge", "fever"],
+        ["kampu", "jwaram"],
+        ["durgandh", "bukhar"]
+      ]
+    },
+    {
+      "rule_id": "ESC-NEO-01",
+      "category": "newborn",
+      "title": "Newborn Inability to Feed or Sucking Poorly",
+      "corpus_citation": "DOC-DANG-03#DANG-04",
+      "action_text": "REFER IMMEDIATELY to Special Newborn Care Unit (SNCU) / District Hospital. Keep baby warm via skin-to-skin Kangaroo Mother Care en route.",
+      "trigger_terms": [
+        "baby not feeding", "newborn unable to feed", "newborn not sucking", "baby cannot suck",
+        "refuses to breastfeed", "unable to breastfeed", "pillaki palu thagadam ledhu",
+        "palu thaagatam ledhu", "palu chekatledu", "bacha doodh nahi pee raha", "bacha doodh nahi chus raha",
+        "పాలు తాగలేకపోవడం", "పాలు పట్టకపోవడం", "दूध नहीं पी रहा"
+      ],
+      "proximity_groups": [
+        ["baby", "not", "feeding"],
+        ["newborn", "unable", "feed"],
+        ["baby", "cannot", "suck"],
+        ["pillaki", "palu"],
+        ["bacha", "doodh"]
+      ]
+    },
+    {
+      "rule_id": "ESC-NEO-02",
+      "category": "newborn",
+      "title": "Fast Breathing in Newborn / Child (Tachypnea)",
+      "corpus_citation": "DOC-DANG-03#DANG-04",
+      "action_text": "REFER IMMEDIATELY to SNCU / Hospital. Count respiratory rate for full 60 seconds. Do not administer home remedies or cough syrups.",
+      "trigger_terms": [
+        "fast breathing newborn", "tachypnea newborn", "rapid breathing baby", "breathing very fast baby",
+        "60 breaths per minute", "respiratory rate 60", "pilla aayasam ga undi", "aayasam baby",
+        "tez saans baby", "tez saans newborn", "వేగంగా శ్వాస తీసుకోవడం", "ఆయాసం"
+      ],
+      "proximity_groups": [
+        ["fast", "breathing", "newborn"],
+        ["fast", "breathing", "baby"],
+        ["rapid", "breathing", "baby"],
+        ["aayasam", "pillaki"],
+        ["tez", "saans"]
+      ],
+      "numeric_conditions": [
+        {"field": "respiratory_rate", "operator": ">=", "threshold": 60}
+      ]
+    },
+    {
+      "rule_id": "ESC-NEO-03",
+      "category": "newborn",
+      "title": "Severe Chest Indrawing in Newborn or Young Infant",
+      "corpus_citation": "DOC-DANG-03#DANG-04",
+      "action_text": "REFER IMMEDIATELY to Hospital / SNCU. Sign of severe pneumonia or respiratory exhaustion. Keep airway open and keep baby warm.",
+      "trigger_terms": [
+        "chest indrawing", "severe chest indrawing", "lower chest wall drawing inward", "subcostal retraction",
+        "rommu kottukovatam", "rommu lo lopaliki povatam", "chhati andar dhasna", "chhati dhas rahi hai",
+        "ఛాతీ లోపలికి లాగడం", "ఛాతీ కొట్టుకోవడం", "छाती अंदर धंसना"
+      ],
+      "proximity_groups": [
+        ["chest", "indrawing"],
+        ["chest", "drawing", "inward"],
+        ["rommu", "lopaliki"],
+        ["chhati", "dhas"]
+      ]
+    },
+    {
+      "rule_id": "ESC-NEO-04",
+      "category": "newborn",
+      "title": "Newborn Convulsions, Fits, Spasms, or Twitching",
+      "corpus_citation": "DOC-DANG-03#DANG-04",
+      "action_text": "REFER IMMEDIATELY to SNCU/Hospital. Call 108. Clear mouth secretions, do not force feeding or water, maintain warmth.",
+      "trigger_terms": [
+        "newborn convulsions", "newborn fits", "newborn seizures", "baby twitching excessively",
+        "baby cycling limbs", "peddala fits", "chinna pillaki fits", "baby janni",
+        "newborn jhatke", "shishu daure", "చిన్నారికి ఫిట్స్", "నవజాత శిశువు మూర్ఛ"
+      ],
+      "proximity_groups": [
+        ["convulsions", "newborn"],
+        ["fits", "baby"],
+        ["fits", "newborn"],
+        ["seizures", "baby"],
+        ["janni", "pilla"],
+        ["jhatke", "shishu"]
+      ]
+    },
+    {
+      "rule_id": "ESC-NEO-05",
+      "category": "newborn",
+      "title": "Severe Neonatal Jaundice (Yellow skin on Day 1 or Palms/Soles)",
+      "corpus_citation": "DOC-DANG-03#DANG-04",
+      "action_text": "REFER IMMEDIATELY to SNCU. High risk of kernicterus (brain damage). Immediate phototherapy or exchange transfusion needed.",
+      "trigger_terms": [
+        "newborn yellow skin day 1", "jaundice on first day", "yellow palms and soles", "severe neonatal jaundice",
+        "pasupu paccha rangulo unna baby", "arachethulu arallu pasupu rangulo", "peeliya hatheli talwe",
+        "pahle din peeliya", "పసిరికలు నవజాత", "కామర్లు అరిచేతులు అరికాళ్ళు"
+      ],
+      "proximity_groups": [
+        ["jaundice", "day 1"],
+        ["yellow", "palms", "soles"],
+        ["yellow", "palms"],
+        ["yellow", "soles"],
+        ["pasupu", "arachethulu"],
+        ["peeliya", "talwe"]
+      ]
+    },
+    {
+      "rule_id": "ESC-NEO-06",
+      "category": "newborn",
+      "title": "Severe Hypothermia or High Fever in Newborn",
+      "corpus_citation": "DOC-DANG-03#DANG-04",
+      "action_text": "REFER IMMEDIATELY to SNCU. If cold (<35.5 C), provide immediate Kangaroo Mother Care (KMC) skin-to-skin against mother's warm chest. Do not give cold baths.",
+      "trigger_terms": [
+        "newborn hypothermia", "baby cold to touch", "newborn temperature low", "severe hypothermia baby",
+        "baby high fever", "newborn high temperature", "baby challaga aipoyindi", "baby body cold",
+        "pilla challabadi poyindi", "bacha thanda pad gaya", "నవజాత శిశువు చల్లబడటం", "नवजात शिशु ठंडा पड़ना"
+      ],
+      "proximity_groups": [
+        ["baby", "cold", "touch"],
+        ["newborn", "cold"],
+        ["baby", "challaga"],
+        ["bacha", "thanda"]
+      ],
+      "numeric_conditions": [
+        {"field": "temp_c", "operator": "<=", "threshold": 35.5},
+        {"field": "temp_c", "operator": ">=", "threshold": 37.5}
+      ]
+    },
+    {
+      "rule_id": "ESC-NEO-07",
+      "category": "newborn",
+      "title": "Severe Umbilical Infection (Omphalitis with Spreading Redness or Pus)",
+      "corpus_citation": "DOC-DANG-03#DANG-04",
+      "action_text": "REFER IMMEDIATELY to SNCU / CHC for systemic IV antibiotics. Do not apply cow dung, ash, oil, or traditional herbs.",
+      "trigger_terms": [
+        "umbilical pus", "umbilicus redness spreading", "omphalitis", "pus from navel baby",
+        "redness around umbilical cord", "boddu nunchi cheemu", "boddu erupuga marindi",
+        "nabhi se peep", "nabhi lal ho gayi", "బొడ్డు చీము", "బొడ్డు చుట్టూ ఎరుపు", "नाभि से मवाद"
+      ],
+      "proximity_groups": [
+        ["umbilical", "pus"],
+        ["umbilicus", "redness"],
+        ["pus", "navel"],
+        ["boddu", "cheemu"],
+        ["nabhi", "peep"]
+      ]
+    },
+    {
+      "rule_id": "ESC-NEO-08",
+      "category": "newborn",
+      "title": "Lethargy, Floppiness, Unconsciousness, or Cyanosis in Baby",
+      "corpus_citation": "DOC-DANG-03#DANG-04",
+      "action_text": "REFER IMMEDIATELY to SNCU/Hospital. Call 108. Keep airway open, ensure warmth, avoid suffocation.",
+      "trigger_terms": [
+        "baby lethargic", "baby limp floppy", "newborn unconscious", "baby blue lips cyanosis",
+        "baby not responding", "pilla spruha ledhu", "challabadi nallaga aipoyindi",
+        "bacha behosh", "neela pad gaya baby", "శిశువు అపస్మారక స్థితి", "నీలంగా మారడం"
+      ],
+      "proximity_groups": [
+        ["baby", "limp"],
+        ["baby", "floppy"],
+        ["baby", "unconscious"],
+        ["newborn", "lethargic"],
+        ["blue", "lips", "baby"],
+        ["neela", "padipovadam"]
+      ]
+    },
+    {
+      "rule_id": "ESC-NUT-01",
+      "category": "child_malnutrition",
+      "title": "Bilateral Pitting Edema (Kwashiorkor / Edematous SAM)",
+      "corpus_citation": "DOC-NUT-04#NUT-02",
+      "action_text": "REFER IMMEDIATELY to Nutrition Rehabilitation Centre (NRC) or District Hospital. Absolute medical emergency; do not treat at home or give diuretics.",
+      "trigger_terms": [
+        "bilateral pitting edema", "edema both feet", "swelling in both feet child", "pitting edema child",
+        "kwashiorkor", "feet swelling both sides indent", "rendu kaallu vaapu", "kaalla vaapu child",
+        "donon pairon me soojan", "pair dabane par gaddha", "రెండు కాళ్ల వాపు", "పాదాల వాపు నొక్కితే గుంట",
+        "दोनों पैरों में सूजन"
+      ],
+      "proximity_groups": [
+        ["bilateral", "edema"],
+        ["pitting", "edema"],
+        ["swelling", "both", "feet"],
+        ["swelling", "feet", "indent"],
+        ["rendu", "kaallu", "vaapu"],
+        ["pairon", "soojan", "gaddha"]
+      ]
+    },
+    {
+      "rule_id": "ESC-NUT-02",
+      "category": "child_malnutrition",
+      "title": "Severe Acute Malnutrition (SAM) with Complications / Failed Appetite",
+      "corpus_citation": "DOC-NUT-04#NUT-04",
+      "action_text": "REFER IMMEDIATELY to Nutrition Rehabilitation Centre (NRC). Keep child warm en route.",
+      "trigger_terms": [
+        "muac red zone complication", "sam with fever", "failed appetite test sam", "muac less than 115 vomiting",
+        "severe wasting under 6 months", "muac 115 failed appetite", "appetite test fail",
+        "తీవ్రమైన పోషకాహార లోపం తీవ్ర సమస్యలతో", "सैम भूख परीक्षण विफल"
+      ],
+      "proximity_groups": [
+        ["muac", "failed", "appetite"],
+        ["sam", "complication"],
+        ["sam", "fever"],
+        ["muac", "fever"]
+      ],
+      "numeric_conditions": [
+        {"field": "muac_mm", "operator": "<=", "threshold": 114.9}
+      ]
+    },
+    {
+      "rule_id": "ESC-NCD-01",
+      "category": "ncd_hypertension",
+      "title": "Hypertensive Crisis (BP >= 180/110 mmHg)",
+      "corpus_citation": "DOC-NCD-05#NCD-02",
+      "action_text": "REFER IMMEDIATELY to Community Health Centre (CHC) or District Hospital. Call 108. Patient must rest quietly in sitting position; do not allow exertion.",
+      "trigger_terms": [
+        "hypertensive crisis", "bp 180/110", "blood pressure 190", "bp 200", "extremely high bp",
+        "bp chala ekkuva", "bp 180 datindi", "high blood pressure crisis", "bp bahut jyada",
+        "రక్తపోటు సంక్షోభం", "బీపీ 180 దాటింది", "उच्च रक्तचाप संकट"
+      ],
+      "proximity_groups": [
+        ["hypertensive", "crisis"],
+        ["bp", "180"],
+        ["blood pressure", "180"]
+      ],
+      "numeric_conditions": [
+        {"field": "bp_sys", "operator": ">=", "threshold": 180},
+        {"field": "bp_dia", "operator": ">=", "threshold": 110}
+      ]
+    },
+    {
+      "rule_id": "ESC-NCD-02",
+      "category": "ncd_hypertension",
+      "title": "High BP with Target Organ Damage / Stroke / Heart Attack Signs",
+      "corpus_citation": "DOC-NCD-05#NCD-02",
+      "action_text": "REFER IMMEDIATELY to CHC/District Hospital. Suspected Stroke or Myocardial Infarction. Call 108 immediately.",
+      "trigger_terms": [
+        "high bp chest pain", "high bp slurred speech", "high bp one sided weakness", "stroke symptoms high bp",
+        "bp with blurred vision sudden", "chest pain left arm radiating", "gundello noppi bp",
+        "pakshavatham lakshanalu", "seene me dard bp", "lakhwa ke lakshan",
+        "ఛాతీ నొప్పి బీపీ", "పక్షవాతం లక్షణాలు", "सीने में तेज दर्द बीपी"
+      ],
+      "proximity_groups": [
+        ["bp", "chest pain"],
+        ["bp", "slurred speech"],
+        ["bp", "weakness"],
+        ["blood pressure", "chest pain"],
+        ["stroke", "bp"],
+        ["gundello noppi", "bp"]
+      ]
+    },
+    {
+      "rule_id": "ESC-NCD-03",
+      "category": "ncd_diabetes",
+      "title": "Severe Hypoglycemia Emergency (< 70 mg/dL with altered sensorium)",
+      "corpus_citation": "DOC-NCD-05#NCD-04",
+      "action_text": "REFER IMMEDIATELY. If conscious, give 3-4 teaspoons of sugar/jaggery solution immediately. If unconscious, do NOT put food/liquid in mouth; call 108 for IV dextrose.",
+      "trigger_terms": [
+        "severe hypoglycemia", "sugar 50 unconscious", "sugar less than 70 drowsy", "diabetic unconscious cold sweat",
+        "sugar poyindi spruha ledhu", "sugar gir gaya behosh", "మధుమేహం స్పృహ తప్పడం", "लो शुगर बेहोशी"
+      ],
+      "proximity_groups": [
+        ["hypoglycemia", "unconscious"],
+        ["sugar", "unconscious"],
+        ["sugar", "behosh"],
+        ["sugar", "spruha"]
+      ]
+    },
+    {
+      "rule_id": "ESC-ORS-01",
+      "category": "diarrhea_dehydration",
+      "title": "Severe Dehydration in Diarrhea (Lethargic/Floppy/Skin pinch > 2s)",
+      "corpus_citation": "DOC-ORS-06#ORS-01",
+      "action_text": "REFER IMMEDIATELY to CHC/Hospital for IV Ringer's Lactate resuscitation. Start giving ORS sips en route if child can swallow.",
+      "trigger_terms": [
+        "severe dehydration", "skin pinch goes back very slowly", "skin pinch greater than 2 seconds",
+        "sunken eyes unconscious diarrhea", "floppy lethargic loose motions", "theevramaina neellu taggadam",
+        "chamada lopaliki potundi 2 seconds", "bahut jyada dehydration", "behoshi dast",
+        "తీవ్రమైన నిర్జలీకరణ", "చర్మం మడత నెమ్మదిగా వెళ్లడం", "गंभीर निर्जलीकरण"
+      ],
+      "proximity_groups": [
+        ["severe", "dehydration"],
+        ["skin pinch", "2 seconds"],
+        ["skin pinch", "very slowly"],
+        ["sunken eyes", "unconscious"],
+        ["sunken eyes", "lethargic"]
+      ]
+    },
+    {
+      "rule_id": "ESC-ORS-02",
+      "category": "diarrhea_dehydration",
+      "title": "Dysentery (Blood in Stool) or Persistent Diarrhea (>= 14 Days)",
+      "corpus_citation": "DOC-ORS-06#ORS-04",
+      "action_text": "REFER IMMEDIATELY to PHC/CHC Medical Officer for diagnostic workup, antibiotics, and nutritional stabilization.",
+      "trigger_terms": [
+        "blood in stool", "dysentery child", "bloody diarrhea", "stools with blood and mucus",
+        "persistent diarrhea 14 days", "diarrhea for 2 weeks", "raktha virachanalu", "mala lo raktham",
+        "tatti me khoon", "dast 14 din se", "రక్త విరేచనాలు", "మలంలో రక్తం", "दस्त में खून"
+      ],
+      "proximity_groups": [
+        ["blood", "stool"],
+        ["blood", "diarrhea"],
+        ["bloody", "diarrhea"],
+        ["diarrhea", "14 days"],
+        ["diarrhea", "2 weeks"],
+        ["raktham", "virachanalu"],
+        ["tatti", "khoon"]
+      ]
+    },
+    {
+      "rule_id": "ESC-FEV-01",
+      "category": "fever_red_flag",
+      "title": "Fever with Stiff Neck, Inability to Bend Neck, or Meningitis Signs",
+      "corpus_citation": "DOC-ORS-06#ORS-05",
+      "action_text": "REFER IMMEDIATELY to Hospital. Suspected bacterial meningitis. Call 108. Keep neck supported without forcing chin forward.",
+      "trigger_terms": [
+        "fever stiff neck", "fever neck stiffness", "fever unable to bend neck", "meningitis sign fever",
+        "jwaram meda vangaraledhu", "meda gattiga ayyindi jwaram", "bukhar gardan akadna", "gardan akad bukhar",
+        "మెడ పట్టేయడం జ్వరం", "గడ్డం ఛాతీకి తాకలేకపోవడం", "बुखार गर्दन अकड़ना"
+      ],
+      "proximity_groups": [
+        ["fever", "stiff", "neck"],
+        ["fever", "neck", "stiffness"],
+        ["jwaram", "meda"],
+        ["bukhar", "gardan"]
+      ]
+    },
+    {
+      "rule_id": "ESC-FEV-02",
+      "category": "fever_red_flag",
+      "title": "Fever with Convulsions, Altered Sensorium, or Delirium",
+      "corpus_citation": "DOC-ORS-06#ORS-05",
+      "action_text": "REFER IMMEDIATELY to CHC/Hospital. Risk of febrile status epilepticus or cerebral infection.",
+      "trigger_terms": [
+        "fever convulsions", "fever fits child", "fever seizures", "fever altered sensorium",
+        "fever delirium confusion", "jwaram fits", "jwaram tho janni", "jwaram spruha thappatam",
+        "bukhar me daure", "bukhar me jhatke", "bukhar me behoshi",
+        "జ్వరం ఫిట్స్", "జ్వరం స్పృహ తప్పడం", "बुखार में दौरे"
+      ],
+      "proximity_groups": [
+        ["fever", "convulsions"],
+        ["fever", "fits"],
+        ["fever", "seizures"],
+        ["fever", "delirium"],
+        ["jwaram", "fits"],
+        ["bukhar", "daure"]
+      ]
+    },
+    {
+      "rule_id": "ESC-FEV-03",
+      "category": "fever_red_flag",
+      "title": "Fever with Petechial Rash, Bleeding Spots, or Dengue Warning Signs",
+      "corpus_citation": "DOC-ORS-06#ORS-05",
+      "action_text": "REFER IMMEDIATELY to Hospital / CHC. Suspect severe Dengue hemorrhagic fever or meningococcemia. Do NOT give aspirin or ibuprofen.",
+      "trigger_terms": [
+        "fever petechial rash", "fever purple spots skin", "fever bleeding gums", "fever vomiting blood",
+        "dengue warning signs fever", "jwaram erupu machalu", "raktham machalu jwaram",
+        "bukhar lal dhabbe", "bukhar masude se khoon", "జ్వరం ఎరుపు మచ్చలు", "బుఖార్ శరీరంపై ఎర్రటి మచ్చలు",
+        "बुखार लाल चकत्ते"
+      ],
+      "proximity_groups": [
+        ["fever", "petechial"],
+        ["fever", "bleeding", "gums"],
+        ["fever", "purple", "spots"],
+        ["fever", "rash", "bleeding"],
+        ["jwaram", "machalu"],
+        ["bukhar", "dhabbe"]
+      ]
+    },
+    {
+      "rule_id": "ESC-FEV-04",
+      "category": "fever_red_flag",
+      "title": "Prolonged Persistent Fever (> 7 Days)",
+      "corpus_citation": "DOC-ORS-06#ORS-05",
+      "action_text": "REFER IMMEDIATELY to PHC/CHC Medical Officer for diagnostic blood workup (Malaria, Typhoid, TB).",
+      "trigger_terms": [
+        "fever more than 7 days", "fever for 8 days", "fever for 10 days", "fever 2 weeks",
+        "persistent fever 7 days", "jwaram 7 rojulu datindi", "jwaram vaaram datindi",
+        "bukhar 7 din se jyada", "bukhar 10 din se", "జ్వరం వారం రోజులు దాటింది", "7 రోజుల కంటే ఎక్కువ జ్వరం",
+        "7 दिन से ज्यादा बुखार"
+      ],
+      "proximity_groups": [
+        ["fever", "7 days"],
+        ["fever", "8 days"],
+        ["fever", "10 days"],
+        ["fever", "2 weeks"]
+      ],
+      "numeric_conditions": [
+        {"field": "fever_days", "operator": ">", "threshold": 7.0}
+      ]
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+# Environment & Secrets
+.env
+.env.local
+
+# Python
+.venv/
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.pytest_tmp/
+.coverage
+htmlcov/
+
+# Database
+*.db
+*.db-shm
+*.db-wal
+*.sqlite
+*.sqlite3
+
+# Node / Frontend
+web/node_modules/
+node_modules/
+dist/
+web/dist/
+build/
+demo_kit/
+.vite/
+
+# Large model binaries & caches (as per hackathon rule: do not commit large binaries)
+*.bin
+*.onnx
+*.safetensors
+*.pt
+*.pth
+models/cache/
+models/weights/
+
+# OS / Editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+
+# Antigravity agent temp
+.system_generated/
+
+# Official Organiser Pack (Kept pristine as source of truth, not committed in team repo)
+official_dataset/

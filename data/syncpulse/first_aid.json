@@ -1,0 +1,158 @@
+[
+  {
+    "id": "CURE-001",
+    "category": "Thermal & Burns",
+    "title": "Minor Burns & Scalds (First Aid)",
+    "scenario": "Accidental contact with hot utensils, boiling water, tea, or cooking steam causing red, painful skin.",
+    "steps": [
+      "Immediately cool the burn under gentle, clean running tap water for at least 10 to 20 minutes.",
+      "Gently remove tight clothing, bangles, or jewelry near the injured area before swelling starts.",
+      "Do NOT break blisters. Leave skin intact to prevent deep bacterial infection.",
+      "Cover the area loosely with a clean, dry, lint-free cloth or sterile plastic cling film.",
+      "Keep the patient calm and offer sips of clean water if they are fully conscious."
+    ],
+    "what_not_to_do": [
+      "NEVER apply ice directly to the burn (causes tissue frostbite).",
+      "NEVER apply home remedies like toothpaste, cow dung, ghee, turmeric, ink, or raw eggs.",
+      "NEVER forcefully peel off clothing that is stuck directly to burned flesh."
+    ],
+    "red_flags": [
+      "Burn area is larger than the palm of the patient's hand.",
+      "Burn involves the face, hands, feet, groin, or major joints.",
+      "Skin appears charred white, brown, or leathery and painless (Third-degree deep burn).",
+      "Patient is an infant under 1 year or an elderly person.",
+      "Burn was caused by chemical or high-voltage electrical contact."
+    ],
+    "doctor_referral_advice": "🚨 If ANY red flag is present, immediately arrange referral to PHC or CHC. Administer oral fluids only if conscious and transfer quickly.",
+    "source_citation": "MoHFW First Aid Guidelines / WHO Thermal Injury Management"
+  },
+  {
+    "id": "CURE-002",
+    "category": "Diarrhea & Hydration",
+    "title": "Dehydration & Loose Stools (ORS & Zinc Management)",
+    "scenario": "Passing loose, watery stools 3 or more times a day in children or adults without blood.",
+    "steps": [
+      "Assess hydration status: check thirst, tears, alertness, and skin pinch elasticity.",
+      "Prepare clean ORS: Dissolve 1 whole standard ORS packet (20.5 g) in exactly 1 Liter of clean drinking water.",
+      "Give small, frequent sips: For children <2 years give 50-100 ml after each loose stool; >2 years give 100-200 ml.",
+      "For infants: Continue exclusive and frequent breastfeeding. Do NOT stop breastmilk.",
+      "Initiate Zinc supplementation: 10 mg/day for infants 2-6 months; 20 mg/day for children 6-59 months for 14 continuous days.",
+      "Continue age-appropriate nutritious feeding (khichdi, mashed banana, curd, dal water)."
+    ],
+    "what_not_to_do": [
+      "NEVER mix ORS with milk, fruit juices, or commercial sweetened soft drinks.",
+      "NEVER boil prepared ORS solution. Use within 24 hours of mixing, then discard.",
+      "NEVER give antimotility drugs (like loperamide) to infants or young children."
+    ],
+    "red_flags": [
+      "Skin pinch on abdomen goes back very slowly (> 2 seconds).",
+      "Child is lethargic, abnormally sleepy, or completely unconscious.",
+      "Eyes are deeply sunken; child cannot drink or drinks eagerly/greedily.",
+      "Blood is visible in stool (Dysentery).",
+      "Vomiting everything consumed, unable to retain ORS."
+    ],
+    "doctor_referral_advice": "🚨 Severe dehydration detected: Immediately refer to PHC/FRU for intravenous (IV) Ringer Lactate fluids. Do not delay transfer.",
+    "source_citation": "MoHFW Child Health IMNCI Guidelines / WHO Diarrhoea Protocol"
+  },
+  {
+    "id": "CURE-003",
+    "category": "Fever Management",
+    "title": "High Fever Home Care & Tepid Sponging",
+    "scenario": "Elevated body temperature (>38.5 C or >101.3 F) in infants, children, or pregnant women.",
+    "steps": [
+      "Keep the patient in a well-ventilated, airy room with light, loose cotton clothing.",
+      "Offer plenty of oral fluids (clean water, lemon water, buttermilk, light soups) to prevent dehydration.",
+      "Perform Tepid Sponging: Use cloth soaked in lukewarm/tap water (NOT ice water). Gently sponge forehead, neck, armpits, and groin for 10-15 minutes.",
+      "If paracetamol is available per standing orders: administer age-weight-appropriate paracetamol syrup/tablet (10-15 mg/kg per dose, minimum 4-6 hours apart).",
+      "Monitor temperature every 2 hours."
+    ],
+    "what_not_to_do": [
+      "NEVER wrap a feverish child in heavy blankets or thick woollens.",
+      "NEVER use cold ice-water or alcohol rub for sponging (causes severe shivering and temperature rebound).",
+      "NEVER give Aspirin to children or adolescents (risk of fatal Reye syndrome)."
+    ],
+    "red_flags": [
+      "Fever accompanied by stiff neck, altered consciousness, or inability to bend head forward.",
+      "Convulsions, fits, or abnormal jerky eye/limb movements.",
+      "Purple/dark red petechial rash on skin that does not fade under pressure.",
+      "Child breathing rapidly or chest drawing inward.",
+      "Fever lasting continuously for more than 7 days."
+    ],
+    "doctor_referral_advice": "🚨 High-risk fever red flag present: Possible meningitis, cerebral malaria, or severe pneumonia. Immediate referral to PHC Medical Officer.",
+    "source_citation": "MoHFW Integrated Management of Neonatal & Childhood Illness (IMNCI)"
+  },
+  {
+    "id": "CURE-004",
+    "category": "Trauma & Wounds",
+    "title": "Superficial Cuts, Bleeding & Animal Bites",
+    "scenario": "Minor kitchen cuts, abrasions, lacerations, or dog/monkey scratches in village households.",
+    "steps": [
+      "For minor bleeding cuts: Apply firm, continuous direct pressure over the wound using a clean gauze or cotton cloth for 5-10 minutes.",
+      "Clean the wound gently under running tap water and mild soap to wash out visible dirt and grit.",
+      "Apply povidone-iodine or clean sterile dressing once bleeding stops.",
+      "For ANIMAL BITES (Dog, cat, monkey): Wash immediately under running water with alkaline soap vigorously for 15 minutes minimum.",
+      "Verify Tetanus (Td) immunization status."
+    ],
+    "what_not_to_do": [
+      "NEVER apply caustic lime (sunnam), chili powder, coffee powder, or mud to animal bites or bleeding cuts.",
+      "NEVER suture or close an animal bite wound primarily (traps rabies virus).",
+      "NEVER apply a tourniquet tightly around a limb unless life-threatening arterial bleeding."
+    ],
+    "red_flags": [
+      "Spurting bright red blood that does not stop after 10 minutes of direct pressure (Arterial hemorrhage).",
+      "Wound caused by a wild animal or suspected rabid dog.",
+      "Deep penetrating puncture wound from rusted nails or farm tools.",
+      "Wound edges gaping open, requiring surgical sutures."
+    ],
+    "doctor_referral_advice": "🚨 For all animal bites: Immediate referral to PHC for Anti-Rabies Vaccine (ARV) and Immunoglobulin (RIG). For arterial bleeding: Call 108.",
+    "source_citation": "National Rabies Control Programme (NRCP) / MoHFW First Aid Manual"
+  },
+  {
+    "id": "CURE-005",
+    "category": "Emergency Response",
+    "title": "Fainting, Dizziness & Heat Exhaustion",
+    "scenario": "Sudden temporary loss of consciousness due to prolonged standing in heat, dehydration, or low blood pressure.",
+    "steps": [
+      "Check responsiveness: Tap shoulder and call loudly. Check if chest is rising normally.",
+      "If breathing normally: Lay the patient flat on their back and elevate legs 30 cm (12 inches) above heart level.",
+      "Loosen tight collars, belts, and constrictive clothing.",
+      "Ensure fresh air flow. Fan the patient or move to shade.",
+      "Once fully awake and alert, offer sips of water with a pinch of salt and sugar, or ORS."
+    ],
+    "what_not_to_do": [
+      "NEVER force water or medicine into the mouth of an unconscious or semi-conscious person (causes choking/aspiration).",
+      "NEVER slap the patient's face or make them stand up abruptly."
+    ],
+    "red_flags": [
+      "Person remains unconscious for more than 1 minute.",
+      "Loss of consciousness preceded by chest pain, shortness of breath, or palpitations.",
+      "Patient is a pregnant mother in 2nd or 3rd trimester.",
+      "Fainting occurred with urinary incontinence, tongue biting, or rhythmic limb jerking (Seizure)."
+    ],
+    "doctor_referral_advice": "🚨 If patient does not regain consciousness promptly or is pregnant: Place in recovery position (left lateral) and dial 108 immediately.",
+    "source_citation": "WHO Basic Emergency Care / MoHFW First Responder Protocols"
+  },
+  {
+    "id": "CURE-006",
+    "category": "Pediatric Emergency",
+    "title": "Choking Relief in Infants & Young Children",
+    "scenario": "Sudden inability to breathe, cough, or cry after swallowing coins, seeds, marbles, or food.",
+    "steps": [
+      "For INFANTS (< 1 year): Place infant face down along your forearm, supporting head with hand. Deliver 5 firm back blows between shoulder blades.",
+      "If object does not expel: Turn infant face up, give 5 quick chest thrusts with two fingers over middle of breastbone.",
+      "For CHILDREN (> 1 year): Stand behind child, wrap arms around waist, make a fist above navel, perform 5 inward-upward abdominal thrusts (Heimlich maneuver).",
+      "Repeat sequence until foreign object is dislodged or child begins coughing/crying."
+    ],
+    "what_not_to_do": [
+      "NEVER perform blind finger sweeps in mouth (pushes foreign object deeper into airway).",
+      "NEVER shake the baby violently."
+    ],
+    "red_flags": [
+      "Child's lips, face, or fingernails turn blue/cyanotic.",
+      "Child becomes completely silent, limp, or unresponsive.",
+      "Unable to speak, cry, or make any sound."
+    ],
+    "doctor_referral_advice": "🚨 Critical airway obstruction: Shout for help immediately, call 108, and continue back blows/chest thrusts while en route to hospital.",
+    "source_citation": "American Heart Association / MoHFW Pediatric First Aid Guidelines"
+  }
+]

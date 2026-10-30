@@ -1,0 +1,25 @@
+{
+  "pack_version": "1.0.0",
+  "pack_name": "ASHA_ANM_CLINICAL_PROTOCOLS_AP_2026",
+  "build_timestamp": "2026-10-20T07:04:17.538238+00:00",
+  "total_documents": 6,
+  "total_chunks": 38,
+  "total_tokens": 4243,
+  "languages": [
+    "en",
+    "te",
+    "hi",
+    "romanized_telugu",
+    "romanized_hindi"
+  ],
+  "corpus_directory": "synthetic_corpus",
+  "document_hashes": {
+    "01_antenatal_care_schedule.md": "bfb5675a40535fd8d5a798d5e504a6a1faeae0eacb4aa32c547e1737c9649bb1",
+    "02_immunisation_schedule.md": "9b16ec1739252de01460fd0997c00d300079eb9858c7e479c32acf07d9e5aa2f",
+    "03_danger_signs_pregnancy_newborn.md": "ed8ffefaa11a638b872929170756c159c19df3634c4152dd34013628877f3541",
+    "04_malnutrition_screening.md": "29d8ffcb18056c8e9750dd885ab02390ddf7d4244940f036f957fbfa368a6664",
+    "05_hypertension_diabetes_ncd.md": "87805b80aaba8980d1cb1f82c046ff71b8b4be55caf317cce46c09bf0edeae91",
+    "06_ors_fever_management.md": "3ec0f76269880d0b562163d47eb2aee366c24a21d4c33b5dc61b34b6e013903e"
+  },
+  "escalation_rules_hash": "0734c9eee16f088df3934d271ebeb275723a54e8e1c64e85ab75d6f4ed9fdea9"
+}

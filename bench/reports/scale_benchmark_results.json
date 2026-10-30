@@ -1,0 +1,121 @@
+{
+  "corpus_scaling": [
+    {
+      "scale_factor": "1x",
+      "total_chunks": 38,
+      "index_size_kb": 48.73,
+      "build_time_ms": 6.39,
+      "retrieval_latency_mean_ms": 0.63,
+      "retrieval_latency_p50_ms": 0.06,
+      "retrieval_latency_p95_ms": 2.55,
+      "process_rss_mb": 22.83
+    },
+    {
+      "scale_factor": "10x",
+      "total_chunks": 380,
+      "index_size_kb": 365.84,
+      "build_time_ms": 70.49,
+      "retrieval_latency_mean_ms": 0.94,
+      "retrieval_latency_p50_ms": 0.4,
+      "retrieval_latency_p95_ms": 3.37,
+      "process_rss_mb": 27.14
+    },
+    {
+      "scale_factor": "50x",
+      "total_chunks": 1900,
+      "index_size_kb": 1892.15,
+      "build_time_ms": 419.73,
+      "retrieval_latency_mean_ms": 2.42,
+      "retrieval_latency_p50_ms": 2.24,
+      "retrieval_latency_p95_ms": 4.3,
+      "process_rss_mb": 46.85
+    }
+  ],
+  "household_scaling": {
+    "total_households": 50000,
+    "generation_time_ms": 182.26,
+    "prioritization_eval_time_ms": 23.57,
+    "target_village": "Venkatapuram",
+    "eligible_village_records": 5847,
+    "daily_list_size": 25,
+    "ram_allocated_mb": 21.86,
+    "peak_rss_mb": 48.45,
+    "sample_top_visits": [
+      {
+        "household_id": "HH-049963",
+        "village": "Venkatapuram",
+        "beneficiary_name": "Beneficiary_49963",
+        "beneficiary_type": "Maternal",
+        "due_service": "Td Booster Injection",
+        "due_date": "2026-09-30",
+        "protocol_ref": "DOC-ANC-01#ANC-02",
+        "is_high_risk": false,
+        "risk_notes": "None",
+        "visited": false,
+        "priority_tier": "TIER_1_CRITICAL",
+        "rank_score": 1020,
+        "priority_reason": "High-risk alert or critically overdue by 20 days"
+      },
+      {
+        "household_id": "HH-049845",
+        "village": "Venkatapuram",
+        "beneficiary_name": "Beneficiary_49845",
+        "beneficiary_type": "Adult",
+        "due_service": "DPT Booster-1 + OPV Booster (16-24 Months)",
+        "due_date": "2026-09-30",
+        "protocol_ref": "DOC-IMM-02#IMM-04",
+        "is_high_risk": false,
+        "risk_notes": "None",
+        "visited": false,
+        "priority_tier": "TIER_1_CRITICAL",
+        "rank_score": 1020,
+        "priority_reason": "High-risk alert or critically overdue by 20 days"
+      },
+      {
+        "household_id": "HH-049417",
+        "village": "Venkatapuram",
+        "beneficiary_name": "Beneficiary_49417",
+        "beneficiary_type": "Adult",
+        "due_service": "DPT Booster-1 + OPV Booster (16-24 Months)",
+        "due_date": "2026-09-30",
+        "protocol_ref": "DOC-IMM-02#IMM-04",
+        "is_high_risk": false,
+        "risk_notes": "None",
+        "visited": false,
+        "priority_tier": "TIER_1_CRITICAL",
+        "rank_score": 1020,
+        "priority_reason": "High-risk alert or critically overdue by 20 days"
+      },
+      {
+        "household_id": "HH-049207",
+        "village": "Venkatapuram",
+        "beneficiary_name": "Beneficiary_49207",
+        "beneficiary_type": "Adult",
+        "due_service": "Monthly Hypertension BP Check",
+        "due_date": "2026-09-30",
+        "protocol_ref": "DOC-NCD-05#NCD-01",
+        "is_high_risk": false,
+        "risk_notes": "None",
+        "visited": false,
+        "priority_tier": "TIER_1_CRITICAL",
+        "rank_score": 1020,
+        "priority_reason": "High-risk alert or critically overdue by 20 days"
+      },
+      {
+        "household_id": "HH-049131",
+        "village": "Venkatapuram",
+        "beneficiary_name": "Beneficiary_49131",
+        "beneficiary_type": "Maternal",
+        "due_service": "Td Booster Injection",
+        "due_date": "2026-09-30",
+        "protocol_ref": "DOC-ANC-01#ANC-02",
+        "is_high_risk": false,
+        "risk_notes": "None",
+        "visited": false,
+        "priority_tier": "TIER_1_CRITICAL",
+        "rank_score": 1020,
+        "priority_reason": "High-risk alert or critically overdue by 20 days"
+      }
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "dataset_file": "escalation_set.jsonl",
+  "total_records": 342,
+  "total_labeled": 342,
+  "unlabeled_records": 0,
+  "emergency_samples": 232,
+  "routine_samples": 110,
+  "true_positives": 232,
+  "false_negatives": 0,
+  "true_negatives": 110,
+  "false_positives": [],
+  "escalation_recall_pct": 100.0,
+  "false_escalation_rate_pct": 0.0,
+  "precision_pct": 100.0,
+  "specificity_pct": 100.0,
+  "f1_score": 100.0,
+  "avg_latency_ms": 0.138,
+  "p50_latency_ms": 0.114,
+  "p95_latency_ms": 0.231,
+  "gate_passed": true,
+  "failures": []
+}

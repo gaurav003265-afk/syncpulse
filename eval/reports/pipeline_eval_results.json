@@ -1,0 +1,16 @@
+{
+  "total_dev_samples": 96,
+  "in_scope_samples": 58,
+  "refusal_samples": 15,
+  "escalation_samples": 23,
+  "hit1_pct": 86.21,
+  "hit3_pct": 98.28,
+  "citation_correctness_pct": 86.21,
+  "refusal_accuracy_pct": 100.0,
+  "escalation_recall_pct": 100.0,
+  "overall_decision_accuracy_pct": 100.0,
+  "avg_latency_ms": 1.21,
+  "p50_latency_ms": 0.4,
+  "p95_latency_ms": 5.1,
+  "discrepancies": []
+}

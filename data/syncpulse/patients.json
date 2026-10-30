@@ -1,0 +1,1001 @@
+[
+  {
+    "patient_id": "P-TEST-888",
+    "name": "Bhavani Devi",
+    "age": 27,
+    "gender": "Female",
+    "village": "Kothur",
+    "contact_phone": "9848099887",
+    "family_head": "Siva Kumar (Husband)",
+    "blood_group": "O+",
+    "is_pregnant": true,
+    "gestational_weeks": 12,
+    "edd": "2027-04-20",
+    "is_high_risk": false,
+    "risk_condition": null,
+    "allergies": [
+      "None"
+    ],
+    "current_medications": [
+      "Folic acid 5mg"
+    ],
+    "assigned_asha": "ASHA-Kothur",
+    "last_visit_date": null,
+    "next_visit_date": "2026-10-25",
+    "visit_history": [],
+    "reminders": []
+  },
+  {
+    "patient_id": "P-TEST-888",
+    "name": "Bhavani Devi",
+    "age": 27,
+    "gender": "Female",
+    "village": "Kothur",
+    "contact_phone": "9848099887",
+    "family_head": "Siva Kumar (Husband)",
+    "blood_group": "O+",
+    "is_pregnant": true,
+    "gestational_weeks": 12,
+    "edd": "2027-04-20",
+    "is_high_risk": false,
+    "risk_condition": null,
+    "allergies": [
+      "None"
+    ],
+    "current_medications": [
+      "Folic acid 5mg"
+    ],
+    "assigned_asha": "ASHA-Kothur",
+    "last_visit_date": null,
+    "next_visit_date": "2026-10-25",
+    "visit_history": [],
+    "reminders": []
+  },
+  {
+    "patient_id": "P-TEST-888",
+    "name": "Bhavani Devi",
+    "age": 27,
+    "gender": "Female",
+    "village": "Kothur",
+    "contact_phone": "9848099887",
+    "family_head": "Siva Kumar (Husband)",
+    "blood_group": "O+",
+    "is_pregnant": true,
+    "gestational_weeks": 12,
+    "edd": "2027-04-20",
+    "is_high_risk": false,
+    "risk_condition": null,
+    "allergies": [
+      "None"
+    ],
+    "current_medications": [
+      "Folic acid 5mg"
+    ],
+    "assigned_asha": "ASHA-Kothur",
+    "last_visit_date": null,
+    "next_visit_date": "2026-10-25",
+    "visit_history": [],
+    "reminders": []
+  },
+  {
+    "patient_id": "P-TEST-888",
+    "name": "Bhavani Devi",
+    "age": 27,
+    "gender": "Female",
+    "village": "Kothur",
+    "contact_phone": "9848099887",
+    "family_head": "Siva Kumar (Husband)",
+    "blood_group": "O+",
+    "is_pregnant": true,
+    "gestational_weeks": 12,
+    "edd": "2027-04-20",
+    "is_high_risk": false,
+    "risk_condition": null,
+    "allergies": [
+      "None"
+    ],
+    "current_medications": [
+      "Folic acid 5mg"
+    ],
+    "assigned_asha": "ASHA-Kothur",
+    "last_visit_date": null,
+    "next_visit_date": "2026-10-25",
+    "visit_history": [],
+    "reminders": []
+  },
+  {
+    "patient_id": "P-TEST-888",
+    "name": "Bhavani Devi",
+    "age": 27,
+    "gender": "Female",
+    "village": "Kothur",
+    "contact_phone": "9848099887",
+    "family_head": "Siva Kumar (Husband)",
+    "blood_group": "O+",
+    "is_pregnant": true,
+    "gestational_weeks": 12,
+    "edd": "2027-04-20",
+    "is_high_risk": false,
+    "risk_condition": null,
+    "allergies": [
+      "None"
+    ],
+    "current_medications": [
+      "Folic acid 5mg"
+    ],
+    "assigned_asha": "ASHA-Kothur",
+    "last_visit_date": null,
+    "next_visit_date": "2026-10-25",
+    "visit_history": [],
+    "reminders": []
+  },
+  {
+    "patient_id": "P-TEST-888",
+    "name": "Bhavani Devi",
+    "age": 27,
+    "gender": "Female",
+    "village": "Kothur",
+    "contact_phone": "9848099887",
+    "family_head": "Siva Kumar (Husband)",
+    "blood_group": "O+",
+    "is_pregnant": true,
+    "gestational_weeks": 12,
+    "edd": "2027-04-20",
+    "is_high_risk": false,
+    "risk_condition": null,
+    "allergies": [
+      "None"
+    ],
+    "current_medications": [
+      "Folic acid 5mg"
+    ],
+    "assigned_asha": "ASHA-Kothur",
+    "last_visit_date": null,
+    "next_visit_date": "2026-10-25",
+    "visit_history": [],
+    "reminders": []
+  },
+  {
+    "patient_id": "P-TEST-888",
+    "name": "Bhavani Devi",
+    "age": 27,
+    "gender": "Female",
+    "village": "Kothur",
+    "contact_phone": "9848099887",
+    "family_head": "Siva Kumar (Husband)",
+    "blood_group": "O+",
+    "is_pregnant": true,
+    "gestational_weeks": 12,
+    "edd": "2027-04-20",
+    "is_high_risk": false,
+    "risk_condition": null,
+    "allergies": [
+      "None"
+    ],
+    "current_medications": [
+      "Folic acid 5mg"
+    ],
+    "assigned_asha": "ASHA-Kothur",
+    "last_visit_date": null,
+    "next_visit_date": "2026-10-25",
+    "visit_history": [],
+    "reminders": []
+  },
+  {
+    "patient_id": "P-TEST-888",
+    "name": "Bhavani Devi",
+    "age": 27,
+    "gender": "Female",
+    "village": "Kothur",
+    "contact_phone": "9848099887",
+    "family_head": "Siva Kumar (Husband)",
+    "blood_group": "O+",
+    "is_pregnant": true,
+    "gestational_weeks": 12,
+    "edd": "2027-04-20",
+    "is_high_risk": false,
+    "risk_condition": null,
+    "allergies": [
+      "None"
+    ],
+    "current_medications": [
+      "Folic acid 5mg"
+    ],
+    "assigned_asha": "ASHA-Kothur",
+    "last_visit_date": null,
+    "next_visit_date": "2026-10-25",
+    "visit_history": [],
+    "reminders": []
+  },
+  {
+    "patient_id": "P-TEST-888",
+    "name": "Bhavani Devi",
+    "age": 27,
+    "gender": "Female",
+    "village": "Kothur",
+    "contact_phone": "9848099887",
+    "family_head": "Siva Kumar (Husband)",
+    "blood_group": "O+",
+    "is_pregnant": true,
+    "gestational_weeks": 12,
+    "edd": "2027-04-20",
+    "is_high_risk": false,
+    "risk_condition": null,
+    "allergies": [
+      "None"
+    ],
+    "current_medications": [
+      "Folic acid 5mg"
+    ],
+    "assigned_asha": "ASHA-Kothur",
+    "last_visit_date": null,
+    "next_visit_date": "2026-10-25",
+    "visit_history": [],
+    "reminders": []
+  },
+  {
+    "patient_id": "P-TEST-888",
+    "name": "Bhavani Devi",
+    "age": 27,
+    "gender": "Female",
+    "village": "Kothur",
+    "contact_phone": "9848099887",
+    "family_head": "Siva Kumar (Husband)",
+    "blood_group": "O+",
+    "is_pregnant": true,
+    "gestational_weeks": 12,
+    "edd": "2027-04-20",
+    "is_high_risk": false,
+    "risk_condition": null,
+    "allergies": [
+      "None"
+    ],
+    "current_medications": [
+      "Folic acid 5mg"
+    ],
+    "assigned_asha": "ASHA-Kothur",
+    "last_visit_date": null,
+    "next_visit_date": "2026-10-25",
+    "visit_history": [],
+    "reminders": []
+  },
+  {
+    "patient_id": "P-TEST-888",
+    "name": "Bhavani Devi",
+    "age": 27,
+    "gender": "Female",
+    "village": "Kothur",
+    "contact_phone": "9848099887",
+    "family_head": "Siva Kumar (Husband)",
+    "blood_group": "O+",
+    "is_pregnant": true,
+    "gestational_weeks": 12,
+    "edd": "2027-04-20",
+    "is_high_risk": false,
+    "risk_condition": null,
+    "allergies": [
+      "None"
+    ],
+    "current_medications": [
+      "Folic acid 5mg"
+    ],
+    "assigned_asha": "ASHA-Kothur",
+    "last_visit_date": null,
+    "next_visit_date": "2026-10-25",
+    "visit_history": [],
+    "reminders": []
+  },
+  {
+    "patient_id": "P-TEST-888",
+    "name": "Bhavani Devi",
+    "age": 27,
+    "gender": "Female",
+    "village": "Kothur",
+    "contact_phone": "9848099887",
+    "family_head": "Siva Kumar (Husband)",
+    "blood_group": "O+",
+    "is_pregnant": true,
+    "gestational_weeks": 12,
+    "edd": "2027-04-20",
+    "is_high_risk": false,
+    "risk_condition": null,
+    "allergies": [
+      "None"
+    ],
+    "current_medications": [
+      "Folic acid 5mg"
+    ],
+    "assigned_asha": "ASHA-Kothur",
+    "last_visit_date": null,
+    "next_visit_date": "2026-10-25",
+    "visit_history": [],
+    "reminders": []
+  },
+  {
+    "patient_id": "P-TEST-888",
+    "name": "Bhavani Devi",
+    "age": 27,
+    "gender": "Female",
+    "village": "Kothur",
+    "contact_phone": "9848099887",
+    "family_head": "Siva Kumar (Husband)",
+    "blood_group": "O+",
+    "is_pregnant": true,
+    "gestational_weeks": 12,
+    "edd": "2027-04-20",
+    "is_high_risk": false,
+    "risk_condition": null,
+    "allergies": [
+      "None"
+    ],
+    "current_medications": [
+      "Folic acid 5mg"
+    ],
+    "assigned_asha": "ASHA-Kothur",
+    "last_visit_date": null,
+    "next_visit_date": "2026-10-25",
+    "visit_history": [],
+    "reminders": []
+  },
+  {
+    "patient_id": "P-TEST-888",
+    "name": "Bhavani Devi",
+    "age": 27,
+    "gender": "Female",
+    "village": "Kothur",
+    "contact_phone": "9848099887",
+    "family_head": "Siva Kumar (Husband)",
+    "blood_group": "O+",
+    "is_pregnant": true,
+    "gestational_weeks": 12,
+    "edd": "2027-04-20",
+    "is_high_risk": false,
+    "risk_condition": null,
+    "allergies": [
+      "None"
+    ],
+    "current_medications": [
+      "Folic acid 5mg"
+    ],
+    "assigned_asha": "ASHA-Kothur",
+    "last_visit_date": null,
+    "next_visit_date": "2026-10-25",
+    "visit_history": [],
+    "reminders": []
+  },
+  {
+    "patient_id": "P-TEST-888",
+    "name": "Bhavani Devi",
+    "age": 27,
+    "gender": "Female",
+    "village": "Kothur",
+    "contact_phone": "9848099887",
+    "family_head": "Siva Kumar (Husband)",
+    "blood_group": "O+",
+    "is_pregnant": true,
+    "gestational_weeks": 12,
+    "edd": "2027-04-20",
+    "is_high_risk": false,
+    "risk_condition": null,
+    "allergies": [
+      "None"
+    ],
+    "current_medications": [
+      "Folic acid 5mg"
+    ],
+    "assigned_asha": "ASHA-Kothur",
+    "last_visit_date": null,
+    "next_visit_date": "2026-10-25",
+    "visit_history": [],
+    "reminders": []
+  },
+  {
+    "patient_id": "P-TEST-888",
+    "name": "Bhavani Devi",
+    "age": 27,
+    "gender": "Female",
+    "village": "Kothur",
+    "contact_phone": "9848099887",
+    "family_head": "Siva Kumar (Husband)",
+    "blood_group": "O+",
+    "is_pregnant": true,
+    "gestational_weeks": 12,
+    "edd": "2027-04-20",
+    "is_high_risk": false,
+    "risk_condition": null,
+    "allergies": [
+      "None"
+    ],
+    "current_medications": [
+      "Folic acid 5mg"
+    ],
+    "assigned_asha": "ASHA-Kothur",
+    "last_visit_date": null,
+    "next_visit_date": "2026-10-25",
+    "visit_history": [],
+    "reminders": []
+  },
+  {
+    "patient_id": "P-TEST-888",
+    "name": "Bhavani Devi",
+    "age": 27,
+    "gender": "Female",
+    "village": "Kothur",
+    "contact_phone": "9848099887",
+    "family_head": "Siva Kumar (Husband)",
+    "blood_group": "O+",
+    "is_pregnant": true,
+    "gestational_weeks": 12,
+    "edd": "2027-04-20",
+    "is_high_risk": false,
+    "risk_condition": null,
+    "allergies": [
+      "None"
+    ],
+    "current_medications": [
+      "Folic acid 5mg"
+    ],
+    "assigned_asha": "ASHA-Kothur",
+    "last_visit_date": null,
+    "next_visit_date": "2026-10-25",
+    "visit_history": [],
+    "reminders": []
+  },
+  {
+    "patient_id": "P-TEST-888",
+    "name": "Bhavani Devi",
+    "age": 27,
+    "gender": "Female",
+    "village": "Kothur",
+    "contact_phone": "9848099887",
+    "family_head": "Siva Kumar (Husband)",
+    "blood_group": "O+",
+    "is_pregnant": true,
+    "gestational_weeks": 12,
+    "edd": "2027-04-20",
+    "is_high_risk": false,
+    "risk_condition": null,
+    "allergies": [
+      "None"
+    ],
+    "current_medications": [
+      "Folic acid 5mg"
+    ],
+    "assigned_asha": "ASHA-Kothur",
+    "last_visit_date": null,
+    "next_visit_date": "2026-10-25",
+    "visit_history": [],
+    "reminders": []
+  },
+  {
+    "patient_id": "P-TEST-888",
+    "name": "Bhavani Devi",
+    "age": 27,
+    "gender": "Female",
+    "village": "Kothur",
+    "contact_phone": "9848099887",
+    "family_head": "Siva Kumar (Husband)",
+    "blood_group": "O+",
+    "is_pregnant": true,
+    "gestational_weeks": 12,
+    "edd": "2027-04-20",
+    "is_high_risk": false,
+    "risk_condition": null,
+    "allergies": [
+      "None"
+    ],
+    "current_medications": [
+      "Folic acid 5mg"
+    ],
+    "assigned_asha": "ASHA-Kothur",
+    "last_visit_date": null,
+    "next_visit_date": "2026-10-25",
+    "visit_history": [],
+    "reminders": []
+  },
+  {
+    "patient_id": "P-TEST-888",
+    "name": "Bhavani Devi",
+    "age": 27,
+    "gender": "Female",
+    "village": "Kothur",
+    "contact_phone": "9848099887",
+    "family_head": "Siva Kumar (Husband)",
+    "blood_group": "O+",
+    "is_pregnant": true,
+    "gestational_weeks": 12,
+    "edd": "2027-04-20",
+    "is_high_risk": false,
+    "risk_condition": null,
+    "allergies": [
+      "None"
+    ],
+    "current_medications": [
+      "Folic acid 5mg"
+    ],
+    "assigned_asha": "ASHA-Kothur",
+    "last_visit_date": null,
+    "next_visit_date": "2026-10-25",
+    "visit_history": [],
+    "reminders": []
+  },
+  {
+    "patient_id": "P-TEST-888",
+    "name": "Bhavani Devi",
+    "age": 27,
+    "gender": "Female",
+    "village": "Kothur",
+    "contact_phone": "9848099887",
+    "family_head": "Siva Kumar (Husband)",
+    "blood_group": "O+",
+    "is_pregnant": true,
+    "gestational_weeks": 12,
+    "edd": "2027-04-20",
+    "is_high_risk": false,
+    "risk_condition": null,
+    "allergies": [
+      "None"
+    ],
+    "current_medications": [
+      "Folic acid 5mg"
+    ],
+    "assigned_asha": "ASHA-Kothur",
+    "last_visit_date": null,
+    "next_visit_date": "2026-10-25",
+    "visit_history": [],
+    "reminders": []
+  },
+  {
+    "patient_id": "P-TEST-888",
+    "name": "Bhavani Devi",
+    "age": 27,
+    "gender": "Female",
+    "village": "Kothur",
+    "contact_phone": "9848099887",
+    "family_head": "Siva Kumar (Husband)",
+    "blood_group": "O+",
+    "is_pregnant": true,
+    "gestational_weeks": 12,
+    "edd": "2027-04-20",
+    "is_high_risk": false,
+    "risk_condition": null,
+    "allergies": [
+      "None"
+    ],
+    "current_medications": [
+      "Folic acid 5mg"
+    ],
+    "assigned_asha": "ASHA-Kothur",
+    "last_visit_date": null,
+    "next_visit_date": "2026-10-25",
+    "visit_history": [],
+    "reminders": []
+  },
+  {
+    "patient_id": "P-TEST-888",
+    "name": "Bhavani Devi",
+    "age": 27,
+    "gender": "Female",
+    "village": "Kothur",
+    "contact_phone": "9848099887",
+    "family_head": "Siva Kumar (Husband)",
+    "blood_group": "O+",
+    "is_pregnant": true,
+    "gestational_weeks": 12,
+    "edd": "2027-04-20",
+    "is_high_risk": false,
+    "risk_condition": null,
+    "allergies": [
+      "None"
+    ],
+    "current_medications": [
+      "Folic acid 5mg"
+    ],
+    "assigned_asha": "ASHA-Kothur",
+    "last_visit_date": null,
+    "next_visit_date": "2026-10-25",
+    "visit_history": [],
+    "reminders": []
+  },
+  {
+    "patient_id": "P-SYNC-101",
+    "name": "Ratnamala",
+    "age": 30,
+    "gender": "Female",
+    "village": "Anantharam",
+    "contact_phone": "9848011999",
+    "family_head": "Subba Rao",
+    "blood_group": "B+",
+    "is_pregnant": false,
+    "is_high_risk": false,
+    "risk_condition": null,
+    "allergies": [],
+    "current_medications": [],
+    "assigned_asha": "ASHA-8841",
+    "last_visit_date": "2026-10-20",
+    "next_visit_date": "2026-11-20",
+    "visit_history": [],
+    "reminders": []
+  },
+  {
+    "patient_id": "P-TEST-888",
+    "name": "Bhavani Devi",
+    "age": 27,
+    "gender": "Female",
+    "village": "Kothur",
+    "contact_phone": "9848099887",
+    "family_head": "Siva Kumar (Husband)",
+    "blood_group": "O+",
+    "is_pregnant": true,
+    "gestational_weeks": 12,
+    "edd": "2027-04-20",
+    "is_high_risk": false,
+    "risk_condition": null,
+    "allergies": [
+      "None"
+    ],
+    "current_medications": [
+      "Folic acid 5mg"
+    ],
+    "assigned_asha": "ASHA-Kothur",
+    "last_visit_date": null,
+    "next_visit_date": "2026-10-25",
+    "visit_history": [],
+    "reminders": []
+  },
+  {
+    "patient_id": "P-101",
+    "name": "Lakshmi Devi",
+    "age": 24,
+    "gender": "Female",
+    "village": "Ramnagar",
+    "contact_phone": "9848011221",
+    "family_head": "Narayana Swamy (Husband)",
+    "blood_group": "B+",
+    "is_pregnant": true,
+    "gestational_weeks": 28,
+    "edd": "2026-12-14",
+    "is_high_risk": true,
+    "risk_condition": "Severe Anemia (Hb 7.2 g/dL) & Borderline BP",
+    "allergies": [
+      "None recorded"
+    ],
+    "current_medications": [
+      "IFA Tablets (1 daily)",
+      "Calcium 500mg"
+    ],
+    "assigned_asha": "ASHA-8841 (Sarada Devi)",
+    "last_visit_date": "2026-09-22",
+    "next_visit_date": "2026-10-20",
+    "visit_history": [
+      {
+        "visit_id": "VIS-P101-01",
+        "date": "2026-07-15",
+        "service_code": "ANC-1",
+        "services_provided": "First trimester registration, MCP card issued, Td-1 injection given, 180 IFA tablets distributed.",
+        "observations": "Mild morning sickness, BP 118/76 mmHg. Advised nutritious diet.",
+        "referral_status": "NONE",
+        "worker_notes": "Beneficiary receptive and scheduled for second visit."
+      },
+      {
+        "visit_id": "VIS-P101-02",
+        "date": "2026-09-22",
+        "service_code": "ANC-2",
+        "services_provided": "ANC checkup, fundal height measured, Td-2 injection administered.",
+        "observations": "Pallor noted in conjunctiva. Hb tested 7.2 g/dL. BP 138/88 mmHg. High risk flagged.",
+        "referral_status": "REFERRED_PHC",
+        "worker_notes": "Referred to Medical Officer at PHC Ramnagar for parenteral iron evaluation."
+      }
+    ],
+    "reminders": [
+      {
+        "reminder_id": "REM-101-01",
+        "title": "ANC-3 & Ultrasound Follow-up",
+        "due_date": "2026-10-20",
+        "priority": "HIGH",
+        "status": "DUE_TODAY"
+      }
+    ]
+  },
+  {
+    "patient_id": "P-102",
+    "name": "Master Ramesh Kumar",
+    "age": 1,
+    "gender": "Male",
+    "village": "Venkatapuram",
+    "contact_phone": "9848022332",
+    "family_head": "Srinivas Rao (Father)",
+    "blood_group": "O+",
+    "is_pregnant": false,
+    "is_high_risk": false,
+    "risk_condition": null,
+    "allergies": [
+      "None"
+    ],
+    "current_medications": [
+      "Vitamin A syrup (1st dose)"
+    ],
+    "assigned_asha": "ASHA-8841 (Sarada Devi)",
+    "last_visit_date": "2026-08-10",
+    "next_visit_date": "2026-10-15",
+    "visit_history": [
+      {
+        "visit_id": "VIS-P102-01",
+        "date": "2026-08-10",
+        "service_code": "IMM-PENTA-2",
+        "services_provided": "Pentavalent-2, OPV-2, Rotavirus-2 administered at village Sub-centre.",
+        "observations": "Weight 8.4 kg, normal growth curve, mild post-vaccination fever resolved.",
+        "referral_status": "NONE",
+        "worker_notes": "Mother counselled on timely 14-week third dose."
+      }
+    ],
+    "reminders": [
+      {
+        "reminder_id": "REM-102-01",
+        "title": "Pentavalent-3 & Fractional IPV-2 Overdue",
+        "due_date": "2026-10-15",
+        "priority": "MEDIUM",
+        "status": "OVERDUE"
+      }
+    ]
+  },
+  {
+    "patient_id": "P-103",
+    "name": "Anitha Rao",
+    "age": 52,
+    "gender": "Female",
+    "village": "Mamidipally",
+    "contact_phone": "9848033443",
+    "family_head": "Anitha Rao (Self)",
+    "blood_group": "A+",
+    "is_pregnant": false,
+    "is_high_risk": true,
+    "risk_condition": "Hypertension (Stage 2) & Type 2 Diabetes",
+    "allergies": [
+      "Sulfa drugs"
+    ],
+    "current_medications": [
+      "Metformin 500mg BD",
+      "Amlodipine 5mg OD (Prescribed by PHC MO)"
+    ],
+    "assigned_asha": "ASHA-8841 (Sarada Devi)",
+    "last_visit_date": "2026-09-15",
+    "next_visit_date": "2026-10-20",
+    "visit_history": [
+      {
+        "visit_id": "VIS-P103-01",
+        "date": "2026-09-15",
+        "service_code": "NCD-FOLLOWUP",
+        "services_provided": "Monthly BP monitoring, random blood sugar strip test (184 mg/dL), diet review.",
+        "observations": "BP 152/96 mmHg. Compliance good, slight pedal edema noted. Advised reduced salt.",
+        "referral_status": "NONE",
+        "worker_notes": "Encouraged daily 30-min walking and medication adherence."
+      }
+    ],
+    "reminders": [
+      {
+        "reminder_id": "REM-103-01",
+        "title": "Monthly NCD BP & Glucose Check",
+        "due_date": "2026-10-20",
+        "priority": "HIGH",
+        "status": "DUE_TODAY"
+      }
+    ]
+  },
+  {
+    "patient_id": "P-104",
+    "name": "Chanti",
+    "age": 2,
+    "gender": "Male",
+    "village": "Kothur",
+    "contact_phone": "9848044554",
+    "family_head": "Appa Rao (Grandfather)",
+    "blood_group": "Unknown",
+    "is_pregnant": false,
+    "is_high_risk": true,
+    "risk_condition": "Severe Acute Malnutrition (SAM) - MUAC 112 mm",
+    "allergies": [
+      "None"
+    ],
+    "current_medications": [
+      "Zinc syrup",
+      "Iron syrup (paediatric)"
+    ],
+    "assigned_asha": "ASHA-8841 (Sarada Devi)",
+    "last_visit_date": "2026-10-02",
+    "next_visit_date": "2026-10-18",
+    "visit_history": [
+      {
+        "visit_id": "VIS-P104-01",
+        "date": "2026-10-02",
+        "service_code": "SAM-SCREEN",
+        "services_provided": "Growth monitoring and MUAC measurement with Shakir tape.",
+        "observations": "MUAC measured 112 mm (Red Zone). Weight 9.1 kg. Visible muscle wasting.",
+        "referral_status": "REFERRED_NRC",
+        "worker_notes": "Immediate referral initiated to Nutrition Rehabilitation Centre (NRC) District Hospital."
+      }
+    ],
+    "reminders": [
+      {
+        "reminder_id": "REM-104-01",
+        "title": "NRC Follow-up & Appetite Test Verification",
+        "due_date": "2026-10-18",
+        "priority": "CRITICAL",
+        "status": "OVERDUE"
+      }
+    ]
+  },
+  {
+    "patient_id": "P-105",
+    "name": "Sunitha Reddy",
+    "age": 21,
+    "gender": "Female",
+    "village": "Anantharam",
+    "contact_phone": "9848055665",
+    "family_head": "Mallikarjuna Reddy (Husband)",
+    "blood_group": "O-",
+    "is_pregnant": true,
+    "gestational_weeks": 16,
+    "edd": "2027-03-28",
+    "is_high_risk": false,
+    "risk_condition": "Rh Negative Mother (Requires monitoring)",
+    "allergies": [
+      "None"
+    ],
+    "current_medications": [
+      "Folic Acid 5mg",
+      "IFA Tablets"
+    ],
+    "assigned_asha": "ASHA-8841 (Sarada Devi)",
+    "last_visit_date": "2026-08-30",
+    "next_visit_date": "2026-10-22",
+    "visit_history": [
+      {
+        "visit_id": "VIS-P105-01",
+        "date": "2026-08-30",
+        "service_code": "ANC-1",
+        "services_provided": "First ANC visit, weight check, blood grouping confirmed O-negative.",
+        "observations": "Vitals normal: BP 110/70 mmHg. Weight 48 kg. Advised on ICT blood test.",
+        "referral_status": "NONE",
+        "worker_notes": "Informed on danger signs of vaginal spotting and severe headache."
+      }
+    ],
+    "reminders": [
+      {
+        "reminder_id": "REM-105-01",
+        "title": "Second Trimester Routine ANC-2",
+        "due_date": "2026-10-22",
+        "priority": "MEDIUM",
+        "status": "UPCOMING"
+      }
+    ]
+  },
+  {
+    "patient_id": "P-106",
+    "name": "Venkatappa Naidu",
+    "age": 68,
+    "gender": "Male",
+    "village": "Ramnagar",
+    "contact_phone": "9848066776",
+    "family_head": "Venkatappa Naidu (Self)",
+    "blood_group": "AB+",
+    "is_pregnant": false,
+    "is_high_risk": false,
+    "risk_condition": "Chronic Respiratory Bronchitis (Stable)",
+    "allergies": [
+      "Dust",
+      "Smoke"
+    ],
+    "current_medications": [
+      "Salbutamol inhaler as needed"
+    ],
+    "assigned_asha": "ASHA-8841 (Sarada Devi)",
+    "last_visit_date": "2026-09-05",
+    "next_visit_date": "2026-10-24",
+    "visit_history": [
+      {
+        "visit_id": "VIS-P106-01",
+        "date": "2026-09-05",
+        "service_code": "GERIATRIC-CARE",
+        "services_provided": "Home checkup, pulse oximetry (SpO2 96%), seasonal flu guidance.",
+        "observations": "Chest clear, no acute breathlessness. Advised to avoid chulha firewood smoke.",
+        "referral_status": "NONE",
+        "worker_notes": "Patient stable and managing daily activities well."
+      }
+    ],
+    "reminders": [
+      {
+        "reminder_id": "REM-106-01",
+        "title": "Bi-monthly Geriatric & Respiratory Follow-up",
+        "due_date": "2026-10-24",
+        "priority": "LOW",
+        "status": "UPCOMING"
+      }
+    ]
+  },
+  {
+    "patient_id": "P-107",
+    "name": "Baby of Swapna",
+    "age": 0,
+    "gender": "Female",
+    "village": "Venkatapuram",
+    "contact_phone": "9848077887",
+    "family_head": "Swapna Kumari (Mother)",
+    "blood_group": "B+",
+    "is_pregnant": false,
+    "is_high_risk": false,
+    "risk_condition": "Normal term delivery (Birth weight 2.9 kg)",
+    "allergies": [
+      "None"
+    ],
+    "current_medications": [
+      "Exclusive breastfeeding"
+    ],
+    "assigned_asha": "ASHA-8841 (Sarada Devi)",
+    "last_visit_date": "2026-09-28",
+    "next_visit_date": "2026-10-20",
+    "visit_history": [
+      {
+        "visit_id": "VIS-P107-01",
+        "date": "2026-09-28",
+        "service_code": "HBNC-VISIT",
+        "services_provided": "Home Based Newborn Care visit 14. Cord checked, breastfeeding assessed.",
+        "observations": "Baby suckling vigorously, passing clear urine, temperature 36.8 C.",
+        "referral_status": "NONE",
+        "worker_notes": "Mother confident with latching technique. No jaundice observed."
+      }
+    ],
+    "reminders": [
+      {
+        "reminder_id": "REM-107-01",
+        "title": "6-Week Immunization (BCG, Penta-1, OPV-1, Rotavirus-1, PCV-1)",
+        "due_date": "2026-10-20",
+        "priority": "HIGH",
+        "status": "DUE_TODAY"
+      }
+    ]
+  },
+  {
+    "patient_id": "P-108",
+    "name": "Parvathi Bai",
+    "age": 32,
+    "gender": "Female",
+    "village": "Mamidipally",
+    "contact_phone": "9848088998",
+    "family_head": "Govinda Naik (Husband)",
+    "blood_group": "A-",
+    "is_pregnant": false,
+    "is_high_risk": false,
+    "risk_condition": "Postnatal Day 21 (PNC recovery)",
+    "allergies": [
+      "None"
+    ],
+    "current_medications": [
+      "IFA Tablets (100 days course)",
+      "Calcium 500mg"
+    ],
+    "assigned_asha": "ASHA-8841 (Sarada Devi)",
+    "last_visit_date": "2026-10-06",
+    "next_visit_date": "2026-10-21",
+    "visit_history": [
+      {
+        "visit_id": "VIS-P108-01",
+        "date": "2026-10-06",
+        "service_code": "PNC-2",
+        "services_provided": "Postnatal visit at 14 days. Lochia checked, maternal temperature monitored.",
+        "observations": "Normal involution of uterus. BP 120/80 mmHg. IFA tablets restocked.",
+        "referral_status": "NONE",
+        "worker_notes": "Discussed postpartum contraception and exclusive breastfeeding."
+      }
+    ],
+    "reminders": [
+      {
+        "reminder_id": "REM-108-01",
+        "title": "Postnatal Care Visit PNC-3 (Day 28)",
+        "due_date": "2026-10-21",
+        "priority": "MEDIUM",
+        "status": "UPCOMING"
+      }
+    ]
+  }
+]

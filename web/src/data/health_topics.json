@@ -1,0 +1,75 @@
+[
+  {
+    "topic_id": "HT-001",
+    "category": "Maternal Health",
+    "title": "Antenatal Care (ANC) Four-Visit Schedule",
+    "summary": "Mandatory milestones, tests, and nutrition interventions for every pregnant woman in India.",
+    "source_org": "Ministry of Health & Family Welfare (MoHFW), Govt of India",
+    "publication_date": "2024 (Revised Guidelines)",
+    "official_citation": "Pradhan Mantri Surakshit Matritva Abhiyan (PMSMA) / National Health Mission",
+    "is_cached_offline": true,
+    "key_points": [
+      "Visit 1: Within 12 weeks of conception for early registration, baseline vitals, Hb test, and Td-1 injection.",
+      "Visit 2: Between 14 and 26 weeks for ultrasound screening, abdominal palpation, and fetal heartbeat check.",
+      "Visit 3: At 28 to 34 weeks for gestational diabetes check, severe anemia detection, and preeclampsia screening.",
+      "Visit 4: At 36 weeks until term for presentation, institutional delivery birth plan, and danger signs counseling."
+    ],
+    "telugu_summary": "గర్భిణీ స్త్రీలకు కనీసం 4 సార్లు ఆశా మరియు ప్రాథమిక ఆరోగ్య కేంద్రం ద్వారా తప్పనిసరిగా ఏఎన్‌సీ పరీక్షలు జరపాలి.",
+    "hindi_summary": "प्रत्येक गर्भवती महिला को कम से कम 4 अनिवार्य प्रसव पूर्व जांच (ANC) करानी चाहिए।"
+  },
+  {
+    "topic_id": "HT-002",
+    "category": "Child Immunization",
+    "title": "National Universal Immunisation Programme (UIP) Schedule",
+    "summary": "Complete childhood vaccine timeline from birth through 5 years protecting against 12 life-threatening diseases.",
+    "source_org": "Universal Immunization Programme (UIP) / WHO India",
+    "publication_date": "2024 Guidelines",
+    "official_citation": "National Health Mission UIP Schedule 2024",
+    "is_cached_offline": true,
+    "key_points": [
+      "At Birth: BCG (0.1 ml intradermal), Oral Polio Vaccine (OPV 0 dose, 2 drops), Hepatitis B birth dose (within 24 hrs).",
+      "6 Weeks: Pentavalent-1 (0.5 ml IM), OPV-1, Rotavirus-1 (5 drops), Fractional IPV-1 (0.1 ml), PCV-1.",
+      "10 Weeks: Pentavalent-2 (0.5 ml IM), OPV-2, Rotavirus-2.",
+      "14 Weeks: Pentavalent-3, OPV-3, Rotavirus-3, Fractional IPV-2, PCV-2.",
+      "9-12 Months: Measles-Rubella-1 (MR-1, 0.5 ml SC), PCV Booster, Vitamin A dose 1 (1 ml / 1 lakh IU)."
+    ],
+    "telugu_summary": "శిశువు పుట్టినప్పటి నుండి నిర్దిష్ట సమయాల్లో టీకాలు వేయించడం వలన 12 రకాల ప్రమాదకర వ్యాధుల నుండి రక్షణ లభిస్తుంది.",
+    "hindi_summary": "राष्ट्रीय टीकाकरण कार्यक्रम के तहत जन्म से लेकर 5 वर्ष तक सभी आवश्यक टीके समय पर लगवाएं।"
+  },
+  {
+    "topic_id": "HT-003",
+    "category": "Nutrition & Growth",
+    "title": "Child Malnutrition & Growth Monitoring (MUAC & Edema)",
+    "summary": "Protocol for screening Severe Acute Malnutrition (SAM) and Moderate Acute Malnutrition (MAM) in rural villages.",
+    "source_org": "Integrated Child Development Services (ICDS) / MoHFW",
+    "publication_date": "2023 POSHAN Abhiyaan Protocol",
+    "official_citation": "Management of Severe Acute Malnutrition at Community Level (MoHFW)",
+    "is_cached_offline": true,
+    "key_points": [
+      "Measure Mid-Upper Arm Circumference (MUAC) for all children aged 6 to 59 months using standard Shakir tape.",
+      "MUAC < 115 mm (Red Zone): Severe Acute Malnutrition (SAM) — Immediate referral to Nutrition Rehabilitation Centre (NRC).",
+      "MUAC 115 mm - 125 mm (Yellow Zone): Moderate Acute Malnutrition (MAM) — Targeted supplementary nutrition and follow-up.",
+      "Check for Bilateral Pitting Edema: Press thumbs gently over both feet for 3 seconds. Persistent indentation indicates nutritional edema."
+    ],
+    "telugu_summary": "6 నుండి 59 నెలల పిల్లలలో చేతి చుట్టుకొలత (MUAC) టేప్ ద్వారా పౌష్టికాహార లోపం తీవ్రతను వెంటనే గుర్తించవచ్చు.",
+    "hindi_summary": "6 से 59 महीने के बच्चों में शाकिर टेप द्वारा कुपोषण की जांच करें। 115 मिमी से कम होने पर तुरंत NRC रेफर करें।"
+  },
+  {
+    "topic_id": "HT-004",
+    "category": "Non-Communicable Diseases",
+    "title": "Hypertension & Diabetes Screening Protocol (NP-NCD)",
+    "summary": "Doorstep screening methodology for blood pressure and diabetes for all adults aged 30 and older.",
+    "source_org": "National Programme for Prevention & Control of NCDs (NP-NCD) / MoHFW",
+    "publication_date": "2024 Operational Guidelines",
+    "official_citation": "Ayushman Bharat Health & Wellness Centre NCD Screening Protocol",
+    "is_cached_offline": true,
+    "key_points": [
+      "Every adult aged 30+ years should have their Blood Pressure and Random Blood Glucose screened at least once a year.",
+      "Normal BP: Systolic < 120 and Diastolic < 80 mmHg.",
+      "Stage 1 Hypertension: 130-139 / 80-89 mmHg — Advise dietary sodium reduction, physical activity, re-check in 2 weeks.",
+      "Hypertensive Crisis: BP >= 160/110 mmHg with headache or blurred vision requires same-day medical referral to PHC."
+    ],
+    "telugu_summary": "30 సంవత్సరాలు దాటిన ప్రతి ఒక్కరికీ రక్తపోటు మరియు చక్కెర స్థాయిలను పరీక్షించి జీవనశైలి మార్పులు సూచించాలి.",
+    "hindi_summary": "30 वर्ष से अधिक आयु के सभी नागरिकों का बीपी और शुगर जांच नियमित रूप से करवाएं।"
+  }
+]
