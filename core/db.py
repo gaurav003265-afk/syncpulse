@@ -160,46 +160,116 @@ class DatabaseManager:
         with self.get_connection() as conn:
             cursor = conn.cursor()
 
-            # 1. Households (Matches 500-household schema with source columns)
+            # 1. Households (Official 500-household schema)
             cursor.execute("""
                 CREATE TABLE IF NOT EXISTS households (
                     household_id TEXT PRIMARY KEY,
                     village TEXT NOT NULL,
-                    household_head TEXT NOT NULL,
-                    contact_phone TEXT NOT NULL,
-                    beneficiary_name TEXT NOT NULL,
-                    beneficiary_type TEXT NOT NULL,
-                    service_code TEXT NOT NULL,
-                    service_name TEXT NOT NULL,
-                    protocol_citation TEXT NOT NULL,
-                    due_date TEXT NOT NULL,
+                    asha_id TEXT NOT NULL DEFAULT 'ASHA-01',
+                    house_no TEXT NOT NULL DEFAULT '',
+                    head_member_id TEXT NOT NULL DEFAULT '',
+                    head_name TEXT NOT NULL DEFAULT '',
+                    members_count INTEGER NOT NULL DEFAULT 1,
+                    household_head TEXT NOT NULL DEFAULT '',
+                    contact_phone TEXT NOT NULL DEFAULT '',
+                    beneficiary_name TEXT NOT NULL DEFAULT '',
+                    beneficiary_type TEXT NOT NULL DEFAULT '',
+                    service_code TEXT NOT NULL DEFAULT '',
+                    service_name TEXT NOT NULL DEFAULT '',
+                    protocol_citation TEXT NOT NULL DEFAULT '',
+                    due_date TEXT NOT NULL DEFAULT '',
                     is_high_risk INTEGER NOT NULL DEFAULT 0,
                     risk_tag TEXT,
+                    latitude REAL,
+                    longitude REAL,
+                    location_captured_at TEXT,
+                    location_accuracy_m REAL,
+                    location_source TEXT,
                     created_at TEXT DEFAULT CURRENT_TIMESTAMP,
                     updated_at TEXT DEFAULT CURRENT_TIMESTAMP
                 )
             """)
-            cursor.execute("CREATE INDEX IF NOT EXISTS idx_hh_village ON households(village);")
-            cursor.execute("CREATE INDEX IF NOT EXISTS idx_hh_due ON households(due_date);")
-            cursor.execute("CREATE INDEX IF NOT EXISTS idx_hh_risk ON households(is_high_risk);")
-
-            # Check and migrate location and audit columns in households table if missing
+            # Check and migrate columns in households table if missing
             cursor.execute("PRAGMA table_info(households);")
             existing_cols = {row["name"] for row in cursor.fetchall()}
-            if "latitude" not in existing_cols:
-                cursor.execute("ALTER TABLE households ADD COLUMN latitude REAL;")
-            if "longitude" not in existing_cols:
-                cursor.execute("ALTER TABLE households ADD COLUMN longitude REAL;")
-            if "location_captured_at" not in existing_cols:
-                cursor.execute("ALTER TABLE households ADD COLUMN location_captured_at TEXT;")
-            if "location_accuracy_m" not in existing_cols:
-                cursor.execute("ALTER TABLE households ADD COLUMN location_accuracy_m REAL;")
-            if "location_source" not in existing_cols:
-                cursor.execute("ALTER TABLE households ADD COLUMN location_source TEXT;")
-            if "created_at" not in existing_cols:
-                cursor.execute("ALTER TABLE households ADD COLUMN created_at TEXT;")
-            if "updated_at" not in existing_cols:
-                cursor.execute("ALTER TABLE households ADD COLUMN updated_at TEXT;")
+            for col_name, col_type in [
+                ("asha_id", "TEXT"),
+                ("house_no", "TEXT"),
+                ("head_member_id", "TEXT"),
+                ("head_name", "TEXT"),
+                ("members_count", "INTEGER"),
+                ("household_head", "TEXT"),
+                ("contact_phone", "TEXT"),
+                ("beneficiary_name", "TEXT"),
+                ("beneficiary_type", "TEXT"),
+                ("service_code", "TEXT"),
+                ("service_name", "TEXT"),
+                ("protocol_citation", "TEXT"),
+                ("due_date", "TEXT"),
+                ("is_high_risk", "INTEGER"),
+                ("risk_tag", "TEXT"),
+                ("latitude", "REAL"),
+                ("longitude", "REAL"),
+                ("location_captured_at", "TEXT"),
+                ("location_accuracy_m", "REAL"),
+                ("location_source", "TEXT"),
+                ("created_at", "TEXT"),
+                ("updated_at", "TEXT"),
+            ]:
+                if col_name not in existing_cols:
+                    cursor.execute(f"ALTER TABLE households ADD COLUMN {col_name} {col_type};")
+
+            cursor.execute("CREATE INDEX IF NOT EXISTS idx_hh_village ON households(village);")
+            cursor.execute("CREATE INDEX IF NOT EXISTS idx_hh_asha ON households(asha_id);")
+
+            # 1B. Official ASHA Workers
+            cursor.execute("""
+                CREATE TABLE IF NOT EXISTS ashas (
+                    asha_id TEXT PRIMARY KEY,
+                    asha_name TEXT NOT NULL,
+                    villages TEXT NOT NULL
+                )
+            """)
+
+            # 1C. Official Household Members (2,234 members across 500 households)
+            cursor.execute("""
+                CREATE TABLE IF NOT EXISTS household_members (
+                    member_id TEXT PRIMARY KEY,
+                    household_id TEXT NOT NULL,
+                    village TEXT NOT NULL,
+                    asha_id TEXT NOT NULL,
+                    name TEXT NOT NULL,
+                    relation TEXT NOT NULL,
+                    sex TEXT NOT NULL,
+                    dob TEXT NOT NULL,
+                    pregnant TEXT,
+                    lmp_date TEXT,
+                    edd TEXT,
+                    anc_visit_dates TEXT,
+                    last_anc_bp TEXT,
+                    last_hb_gdl REAL,
+                    td_booster_eligible TEXT,
+                    td_doses TEXT,
+                    place_of_delivery TEXT,
+                    birth_weight_kg REAL,
+                    hbnc_visits_done TEXT,
+                    child_vaccines TEXT,
+                    last_muac_cm REAL,
+                    last_muac_date TEXT,
+                    bilateral_pitting_oedema TEXT,
+                    ncd_condition TEXT,
+                    last_bp_check_date TEXT,
+                    last_bp_reading TEXT,
+                    last_sugar_check_date TEXT,
+                    last_rbs_mg_dl INTEGER,
+                    created_at TEXT DEFAULT CURRENT_TIMESTAMP,
+                    FOREIGN KEY (household_id) REFERENCES households(household_id) ON DELETE CASCADE
+                )
+            """)
+            cursor.execute("CREATE INDEX IF NOT EXISTS idx_mem_hh ON household_members(household_id);")
+            cursor.execute("CREATE INDEX IF NOT EXISTS idx_mem_asha ON household_members(asha_id);")
+            cursor.execute("CREATE INDEX IF NOT EXISTS idx_mem_preg ON household_members(pregnant);")
+            cursor.execute("CREATE INDEX IF NOT EXISTS idx_mem_ncd ON household_members(ncd_condition);")
 
             # 2. Beneficiaries / Individual Patient Profiles
             cursor.execute("""

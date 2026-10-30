@@ -119,6 +119,16 @@ def build_knowledge_pack(output_dir: Optional[str] = None) -> Path:
         with open(rules_path, "r", encoding="utf-8") as rf, open(out_path / "escalation_rules.json", "w", encoding="utf-8") as wf:
             wf.write(rf.read())
 
+    # Sync into web/src/data if frontend is present
+    web_data_path = root_dir / "web" / "src" / "data"
+    if web_data_path.exists():
+        for fname in ["manifest.json", "chunks.json", "bm25_index.json"]:
+            src_f = out_path / fname
+            dst_f = web_data_path / fname
+            if src_f.exists():
+                with open(src_f, "r", encoding="utf-8") as rf, open(dst_f, "w", encoding="utf-8") as wf:
+                    wf.write(rf.read())
+
     print(f"Knowledge Pack v{manifest['pack_version']} successfully built at: {out_path}")
     print(f" - Documents: {manifest['total_documents']}")
     print(f" - Chunks: {manifest['total_chunks']}")

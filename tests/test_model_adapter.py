@@ -24,7 +24,7 @@ def test_grounded_extractive_adapter_offline(retriever):
     assert out.adapter_name == "GroundedExtractiveAdapter"
     assert out.is_fallback is False
     assert out.primary_citation is not None
-    assert "ORS-02" in out.primary_citation
+    assert "CHD-1.1" in out.primary_citation
     assert "1 liter" in out.answer_text.lower() or "clean" in out.answer_text.lower()
     assert out.latency_ms < 50.0  # must be fast
     assert out.memory_peak_kb > 0.0

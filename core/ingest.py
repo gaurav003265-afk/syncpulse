@@ -35,8 +35,8 @@ class ProtocolChunk:
 
 def find_corpus_dir(custom_path: Optional[str] = None) -> Path:
     """
-    Finds the active corpus directory. Prioritizes organizer-provided 'data/corpus'
-    if present, otherwise falls back to clearly labelled 'data/synthetic_corpus'.
+    Finds the active corpus directory. Prioritizes official 'data/protocols'
+    if present, otherwise checks 'data/corpus' or 'data/synthetic_corpus'.
     """
     if custom_path:
         p = Path(custom_path)
@@ -44,6 +44,10 @@ def find_corpus_dir(custom_path: Optional[str] = None) -> Path:
             return p
 
     base_dir = Path(__file__).resolve().parent.parent / "data"
+    official_protocols = base_dir / "protocols"
+    if official_protocols.exists() and any(official_protocols.glob("*.md")):
+        return official_protocols
+
     real_corpus = base_dir / "corpus"
     if real_corpus.exists() and any(real_corpus.glob("*.md")):
         return real_corpus
@@ -58,7 +62,8 @@ def find_corpus_dir(custom_path: Optional[str] = None) -> Path:
 def ingest_corpus(corpus_dir: Optional[str] = None) -> List[ProtocolChunk]:
     """
     Reads all markdown protocol documents from the corpus directory and
-    splits them into section-tagged chunks.
+    splits them into leaf section chunks (107 sections in official H5 corpus).
+    Preserves exact official leaf section IDs (e.g. ANC-1.1, ESC-2.7).
     """
     c_path = find_corpus_dir(corpus_dir)
     chunks: List[ProtocolChunk] = []
@@ -70,44 +75,56 @@ def ingest_corpus(corpus_dir: Optional[str] = None) -> List[ProtocolChunk]:
     if not md_files:
         raise ValueError(f"No protocol markdown documents found in {c_path}")
 
+    leaf_sec_re = re.compile(r"^###\s+([A-Za-z]{2,4}-\d+\.\d+)\s*(.*)")
+    group_sec_re = re.compile(r"^##\s+([A-Za-z]{2,4}-\d+)\s*(.*)")
+    legacy_sec_re = re.compile(r"^##\s+Section\s+([A-Za-z0-9\-]+):\s*(.+)$")
+    doc_title_re = re.compile(r"^#\s+(.+)$")
+
     for file_path in md_files:
         with open(file_path, "r", encoding="utf-8") as f:
             lines = f.readlines()
 
         doc_title = file_path.stem.replace("_", " ").title()
-        doc_id = f"DOC-{file_path.stem[:6].upper()}"
+        doc_prefix = file_path.stem.split("_")[1] if "_" in file_path.stem else file_path.stem[:4].upper()
+        doc_id = doc_prefix.upper()
 
-        current_section_id = "GEN-01"
-        current_section_title = "General Overview"
+        current_section_id = f"{doc_id}-0.0"
+        current_section_title = "Overview & Disclaimer"
         section_lines: List[str] = []
         section_start_line = 1
 
         for idx, line in enumerate(lines, start=1):
-            # Check for Document ID line: "Document ID: DOC-ANC-01"
-            doc_id_match = re.match(r"^Document ID:\s*([A-Za-z0-9\-]+)", line.strip(), re.IGNORECASE)
-            if doc_id_match:
-                doc_id = doc_id_match.group(1).strip()
+            # Document Title
+            dt_m = doc_title_re.match(line.strip())
+            if dt_m and idx <= 5:
+                doc_title = dt_m.group(1).strip()
                 continue
 
-            # Check for Doc Title: "# Protocol 01: ..."
-            doc_title_match = re.match(r"^#\s+(.+)$", line.strip())
-            if doc_title_match and idx <= 5:
-                doc_title = doc_title_match.group(1).strip()
-                continue
+            # Official Leaf Section (### ANC-1.1 Early registration and EDD)
+            leaf_m = leaf_sec_re.match(line.strip())
+            # Legacy Section (## Section ANC-01: ...)
+            leg_m = legacy_sec_re.match(line.strip())
 
-            # Check for Section header: "## Section ANC-01: Minimum Antenatal Visits Schedule"
-            sec_match = re.match(r"^##\s+Section\s+([A-Za-z0-9\-]+):\s*(.+)$", line.strip())
-            if sec_match:
-                # Flush existing section if it has content
+            matched_sec_id = None
+            matched_sec_title = None
+
+            if leaf_m:
+                matched_sec_id = leaf_m.group(1).strip()
+                matched_sec_title = leaf_m.group(2).strip() or matched_sec_id
+            elif leg_m:
+                matched_sec_id = leg_m.group(1).strip()
+                matched_sec_title = leg_m.group(2).strip()
+
+            if matched_sec_id:
+                # Flush previous section
                 if section_lines:
                     text_content = "".join(section_lines).strip()
-                    if text_content:
+                    if text_content and current_section_id != f"{doc_id}-0.0":
                         tokens = tokenize(text_content)
-                        # Top unique informative tokens for keyword indexing
-                        informative_tokens = [t for t in tokens if len(t) > 3][:20]
+                        informative_tokens = [t for t in tokens if len(t) > 3][:25]
                         chunks.append(
                             ProtocolChunk(
-                                chunk_id=f"{doc_id}#{current_section_id}-c1",
+                                chunk_id=current_section_id,
                                 doc_id=doc_id,
                                 doc_title=doc_title,
                                 section_id=current_section_id,
@@ -119,10 +136,9 @@ def ingest_corpus(corpus_dir: Optional[str] = None) -> List[ProtocolChunk]:
                                 keywords=list(dict.fromkeys(informative_tokens)),
                             )
                         )
-                # Start new section
-                current_section_id = sec_match.group(1).strip()
-                current_section_title = sec_match.group(2).strip()
-                section_lines = []
+                current_section_id = matched_sec_id
+                current_section_title = matched_sec_title
+                section_lines = [line]
                 section_start_line = idx
             else:
                 section_lines.append(line)
@@ -130,12 +146,12 @@ def ingest_corpus(corpus_dir: Optional[str] = None) -> List[ProtocolChunk]:
         # Flush final section
         if section_lines:
             text_content = "".join(section_lines).strip()
-            if text_content:
+            if text_content and current_section_id != f"{doc_id}-0.0":
                 tokens = tokenize(text_content)
-                informative_tokens = [t for t in tokens if len(t) > 3][:20]
+                informative_tokens = [t for t in tokens if len(t) > 3][:25]
                 chunks.append(
                     ProtocolChunk(
-                        chunk_id=f"{doc_id}#{current_section_id}-c1",
+                        chunk_id=current_section_id,
                         doc_id=doc_id,
                         doc_title=doc_title,
                         section_id=current_section_id,
@@ -152,6 +168,12 @@ def ingest_corpus(corpus_dir: Optional[str] = None) -> List[ProtocolChunk]:
 
 
 if __name__ == "__main__":
+    import sys
+    if sys.stdout.encoding != "utf-8":
+        try:
+            sys.stdout.reconfigure(encoding="utf-8")
+        except Exception:
+            pass
     chunks = ingest_corpus()
     print(f"Successfully ingested {len(chunks)} chunks from corpus:")
     for c in chunks:

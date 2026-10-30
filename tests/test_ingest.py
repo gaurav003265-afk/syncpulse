@@ -15,12 +15,13 @@ def test_ingest_all_protocol_sections():
     section_ids = {c.section_id for c in chunks}
     # Verify key clinical sections exist
     expected_sections = [
-        "ANC-01", "ANC-02", "ANC-03",
-        "IMM-01", "IMM-02", "IMM-03", "IMM-06",
-        "DANG-01", "DANG-02", "DANG-03", "DANG-04",
-        "NUT-01", "NUT-02", "NUT-04",
-        "NCD-01", "NCD-02", "NCD-03", "NCD-04",
-        "ORS-01", "ORS-02", "ORS-03", "ORS-05"
+        "ANC-1.1", "ANC-2.1", "ANC-3.1",
+        "IMM-1.1", "IMM-2.1", "IMM-2.3",
+        "ESC-1.1", "ESC-2.1", "ESC-2.2", "ESC-6.1",
+        "NUT-1.1", "NUT-1.2",
+        "NCD-1.1", "NCD-1.2", "NCD-2.1",
+        "CHD-1.1", "CHD-1.2", "CHD-2.1", "CHD-3.1",
+        "VIS-1.1", "VIS-2.1"
     ]
     for sec in expected_sections:
         assert sec in section_ids, f"Section {sec} missing from ingested chunks"
@@ -30,7 +31,6 @@ def test_chunk_attributes_and_citations():
     chunks = ingest_corpus()
     for c in chunks:
         assert c.chunk_id
-        assert c.doc_id.startswith("DOC-")
         assert c.line_start <= c.line_end
         assert len(c.text.strip()) > 0
         assert c.token_count > 0
@@ -49,8 +49,8 @@ def test_knowledge_pack_manifest_and_bm25(tmp_path):
     with open(manifest_file, "r", encoding="utf-8") as f:
         manifest = json.load(f)
         assert manifest["pack_version"] == "1.0.0"
-        assert manifest["total_documents"] == 6
-        assert len(manifest["document_hashes"]) == 6
+        assert manifest["total_documents"] == 9
+        assert len(manifest["document_hashes"]) == 9
 
     with open(bm25_file, "r", encoding="utf-8") as f:
         bm25 = json.load(f)

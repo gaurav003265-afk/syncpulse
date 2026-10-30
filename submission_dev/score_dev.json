@@ -1,0 +1,36 @@
+{
+  "primary_score": 1.0,
+  "escalation_gate": "PASS",
+  "gate_recall_condition": "PASS",
+  "gate_false_escalation_condition": "PASS",
+  "score_before_gate": 1.0,
+  "escalation_recall": 1.0,
+  "false_escalation_rate": 0.0,
+  "refusal_accuracy": 1.0,
+  "citation_accuracy": 1.0,
+  "key_fact_coverage": 1.0,
+  "visit_list_score": 1.0,
+  "visit_list_precision": 1.0,
+  "visit_list_recall": 1.0,
+  "visit_list_f1": 1.0,
+  "visit_priority_accuracy": 1.0,
+  "n_questions_scored": 40,
+  "n_must_escalate": 10,
+  "n_missing_answers": 0,
+  "missing_answer_ids_first10": [],
+  "missed_escalation_ids_first10": [],
+  "n_missed_escalations": 0,
+  "n_visit_truth_rows": 39,
+  "n_visit_pred_rows_in_scope": 39,
+  "visit_list_file_present": true,
+  "median_latency_ms_reported": 12.626999999999999,
+  "footprint_reported": {
+    "model_names": [
+      "SyncPulse-Deterministic-BM25-Extractive"
+    ],
+    "model_size_mb": 1.58,
+    "peak_ram_mb": 77.2,
+    "median_latency_ms_cpu": 12.627,
+    "offline": true
+  }
+}

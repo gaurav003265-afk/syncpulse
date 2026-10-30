@@ -1,10 +1,10 @@
 {
   "pack_version": "1.0.0",
   "pack_name": "ASHA_ANM_CLINICAL_PROTOCOLS_AP_2026",
-  "build_timestamp": "2026-10-20T07:04:17.538238+00:00",
-  "total_documents": 6,
-  "total_chunks": 38,
-  "total_tokens": 4243,
+  "build_timestamp": "2026-10-30T11:06:21.693466+00:00",
+  "total_documents": 9,
+  "total_chunks": 107,
+  "total_tokens": 10376,
   "languages": [
     "en",
     "te",
@@ -12,14 +12,17 @@
     "romanized_telugu",
     "romanized_hindi"
   ],
-  "corpus_directory": "synthetic_corpus",
+  "corpus_directory": "protocols",
   "document_hashes": {
-    "01_antenatal_care_schedule.md": "bfb5675a40535fd8d5a798d5e504a6a1faeae0eacb4aa32c547e1737c9649bb1",
-    "02_immunisation_schedule.md": "9b16ec1739252de01460fd0997c00d300079eb9858c7e479c32acf07d9e5aa2f",
-    "03_danger_signs_pregnancy_newborn.md": "ed8ffefaa11a638b872929170756c159c19df3634c4152dd34013628877f3541",
-    "04_malnutrition_screening.md": "29d8ffcb18056c8e9750dd885ab02390ddf7d4244940f036f957fbfa368a6664",
-    "05_hypertension_diabetes_ncd.md": "87805b80aaba8980d1cb1f82c046ff71b8b4be55caf317cce46c09bf0edeae91",
-    "06_ors_fever_management.md": "3ec0f76269880d0b562163d47eb2aee366c24a21d4c33b5dc61b34b6e013903e"
+    "01_ANC_antenatal_care.md": "86e096fb9b3dca283a4c9fa65e16942dfdd63e65fef88616d6c05b51bcfdbc4c",
+    "02_IMM_immunisation_schedule.md": "6268fa195a9ce3f09ac0789ab469189980fe44adae0c0005bfc30e0c0a258717",
+    "03_ESC_danger_signs_refer_immediately.md": "2e04495a3d92ed572b4cc62a8ce775ac715328955f22bbd3e3628cf838083944",
+    "04_HBNC_newborn_and_postnatal_care.md": "1a9049ff4c90b3bf3b0c6769b2f0fc318a1609afb1153b2383fd675bf2a57723",
+    "05_NUT_malnutrition_screening.md": "9150a70ad9e5b49a24194831c94cb94a691e9118d15432447c3568b23e9f44c1",
+    "06_NCD_hypertension_diabetes.md": "6fbaddf1472f10504f4df7a44f0e8b6c340256e2f9fd7eb6ab4edbf6acdbce1e",
+    "07_CHD_diarrhoea_fever_breathing.md": "233cb73a5807db2b591600d367fc4e6ff308dcf8af8fe48a5df6606240814cad",
+    "08_SCP_scope_and_redirect.md": "100eee8fd76be64c02d3b54d7a7799626dfa6571bf367c0f560d13e562cd25db",
+    "09_VIS_daily_visit_list_rules.md": "06bfe2d75eae0432ed6c86e0aac4da7c96c8d27caa6f537510e40945b523278c"
   },
-  "escalation_rules_hash": "0734c9eee16f088df3934d271ebeb275723a54e8e1c64e85ab75d6f4ed9fdea9"
+  "escalation_rules_hash": "017873410bc0ca1477bde43240035b2561636b05ead14fe6a8d7aaaea0f64d4c"
 }

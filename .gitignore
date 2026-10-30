@@ -48,6 +48,8 @@ Thumbs.db
 
 # Antigravity agent temp
 .system_generated/
+dist_package/
+bench/test_set_analysis.txt
 
 # Official Organiser Pack (Kept pristine as source of truth, not committed in team repo)
 official_dataset/

@@ -1,0 +1,9 @@
+{
+  "model_names": [
+    "SyncPulse-Deterministic-BM25-Extractive"
+  ],
+  "model_size_mb": 1.58,
+  "peak_ram_mb": 78.04,
+  "median_latency_ms_cpu": 9.922,
+  "offline": true
+}

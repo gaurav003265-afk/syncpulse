@@ -82,17 +82,11 @@ class FrontlineCompanionPipeline:
             primary_citation = primary.corpus_citation if primary else None
             matched_dicts = [asdict(r) for r in esc_res.matched_rules]
 
-            escalation_text = (
-                f"🚨 **REFER IMMEDIATELY: Obstetric / Neonatal / Medical Emergency Detected**\n\n"
-                f"**Clinical Danger Sign:** {primary.title if primary else 'Severe Emergency'}\n"
-                f"**Action Protocol:** {esc_res.action_text}\n\n"
-                f"**Protocol Citation:** {primary_citation}"
-            )
+            action = esc_res.action_text or "REFER IMMEDIATELY to FRU/Hospital. Call 108."
+            title = primary.title if primary else "Emergency"
+            escalation_text = f"{title}: {action} ({primary_citation}). Refer immediately."
             if esc_res.negation_detected:
-                escalation_text += (
-                    "\n\n*(Note: Negation word detected in clinical text; "
-                    "safety rule escalated fail-safe per emergency protocol)*"
-                )
+                escalation_text += " (Note: Negation word detected in clinical text; escalating fail-safe per emergency protocol)."
 
             return PipelineResponse(
                 type="escalate",
@@ -134,9 +128,9 @@ class FrontlineCompanionPipeline:
             elapsed = (time.perf_counter() - t0) * 1000.0
             return PipelineResponse(
                 type="refuse",
-                text=scope_res.redirect_message or "Request is outside protocol scope. Please consult a Medical Officer.",
-                primary_citation=None,
-                citations=[],
+                text=scope_res.redirect_message or "Request is outside protocol scope. Please consult a Medical Officer (SCP-1.2).",
+                primary_citation="SCP-1.2",
+                citations=["SCP-1.2"],
                 matched_rules=[],
                 confidence=0.98,
                 latency_ms=round(elapsed, 2),

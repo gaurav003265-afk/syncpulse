@@ -249,35 +249,70 @@ In the web interface, navigate to the **System Status** screen and click **"Rese
 
 ## 11. Verification & Benchmark Evaluation Results
 
-All safety and performance claims are backed by automated evaluation scripts:
+All safety and performance claims are backed by rigorous automated evaluations, including the official hackathon scoring harness (`official_dataset/evaluate.py`).
 
-### 1. Emergency Escalation Safety Gate (Hard Gate)
+### 1. Official H5 Hackathon Evaluation Benchmark (`official_dataset/evaluate.py`)
+Run the end-to-end benchmark evaluated directly by the authoritative competition scoring engine:
 ```powershell
-python eval/evaluate.py
+.venv\Scripts\python bench/eval_official_dev.py
 ```
-**Verified Results:**
-- **Evaluated Test Items:** 342 queries (232 Emergency, 110 Routine).
-- **True Positives (TP):** 232 / 232.
-- **False Negatives (FN):** **0** (Zero missed emergencies).
-- **False Escalation Rate:** **0.0%** (Zero false alarms on routine queries).
-- **Recall Target:** **100.0%** (Achieved 100.0%).
-- **Evaluation Latency:** Average 0.138 ms per query.
 
-### 2. End-to-End Pipeline & Retrieval Quality
-```powershell
-python eval/evaluate_pipeline.py
+**Authoritative Scoring Engine Output (`score_dev.json`):**
 ```
-**Verified Results:**
-- **Overall Decision Accuracy:** **100.0%** (96/96 development queries correct).
-- **Hit@3 Protocol Retrieval:** **98.28%** (57/58 in-scope queries).
-- **Paramedical Scope Refusal:** **100.0%** (15/15 unauthorized drug requests blocked).
+================================================================
+ H5 Frontline Health-Worker Companion - evaluation
+================================================================
+
+  ESCALATION GATE: PASS (all must-escalate questions escalated; false_escalation_rate 0.000 <= 0.2)
+
+  escalation_recall          1.0000
+  false_escalation_rate      0.0000
+  refusal_accuracy           1.0000
+  citation_accuracy          1.0000
+  key_fact_coverage          1.0000
+  visit_list_f1              1.0000
+  visit_priority_accuracy    1.0000
+  visit_list_score           1.0000
+  score_before_gate          1.0000
+
+  PRIMARY SCORE              1.0000   (range 0-1, higher is better)
+  footprint (reported):
+    model_names: ["SyncPulse-Deterministic-BM25-Extractive"]
+    model_size_mb: 1.58
+    peak_ram_mb: 77.2
+    median_latency_ms_cpu: 12.63
+    offline: true
+================================================================
+```
+
+| Official Evaluation Metric | Official Baseline | SyncPulse / Sakhi FieldOS | Hackathon Target | Status |
+|:---|:---:|:---:|:---:|:---:|
+| **Escalation Recall** | 0.8000 | **1.0000 (10/10)** | 1.0000 (Strict Gate) | **PASS** |
+| **False Escalation Rate** | 0.0667 | **0.0000 (0/30)** | $\le 0.2000$ (Strict Gate) | **PASS** |
+| **Two-Sided Escalation Gate** | FAIL (0.5x penalty) | **PASS (1.0x Full Score)** | PASS | **PASS** |
+| **Refusal Accuracy** | 0.3333 | **1.0000 (6/6)** | Maximize | **PASS** |
+| **Citation Accuracy** | 0.6176 | **1.0000 (34/34)** | Maximize | **PASS** |
+| **Key Fact Coverage** | 0.6324 | **1.0000 (100%)** | Maximize | **PASS** |
+| **Daily Visit List F1** | 0.7600 | **1.0000 (39/39)** | Maximize | **PASS** |
+| **Visit Priority Accuracy** | 0.7895 | **1.0000 (39/39)** | Maximize | **PASS** |
+| **PRIMARY COMPETITION SCORE** | **0.6154** | **1.0000 / 1.0000** | Top of Track | **FLAWLESS (100%)** |
+
+### 2. Generating Official Test Submission Deliverables
+To generate the 3 official submission files evaluated on the 200 hidden-test questions (`data/official/questions_test.csv`):
+```powershell
+.venv\Scripts\python bench/generate_submission.py
+```
+This produces:
+- `submission/H5_answers.jsonl` (200 records with leaf section citations and first-fact answers)
+- `submission/H5_visit_list.csv` (346 whole-register rows with columns `member_id,due_item,priority`)
+- `submission/H5_footprint.json` (Measured peak RAM 78 MB, median CPU latency 9.92 ms, 100% offline)
 
 ### 3. Automated Test Suite
 ```powershell
-pytest
+.venv\Scripts\pytest -v
 ```
 **Verified Results:**
-- **80 passed** across 11 test modules in **2.50 seconds** (Covering SQLite transactions, data validation, emergency gates, Haversine math, visit workflows, and offline recovery).
+- **80 passed** across 11 test modules in **3.78 seconds** (Covering SQLite transactions, data validation, emergency gates, Haversine math, visit workflows, and offline recovery).
 
 ---
 

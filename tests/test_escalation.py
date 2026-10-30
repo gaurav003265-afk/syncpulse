@@ -16,7 +16,7 @@ def test_maternal_bleeding_english(engine):
     res = engine.check("Mother is in 3rd trimester and has severe bleeding from vagina.")
     assert res.escalate is True
     assert res.primary_rule_id == "ESC-MAT-01"
-    assert "DOC-DANG-03#DANG-01" in res.corpus_citation
+    assert "ESC-2.1" in res.corpus_citation
 
 
 def test_maternal_bleeding_telugu_romanised(engine):
