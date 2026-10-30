@@ -1,3 +1,4 @@
+import "./index.css";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
@@ -11,16 +12,16 @@ if (rootElement) {
   );
 }
 
-// Register service worker for offline PWA caching
+// Single, robust Service Worker registration for offline PWA operation
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {
     navigator.serviceWorker
       .register("/sw.js")
       .then((reg) => {
-        console.log("Service Worker registered successfully:", reg.scope);
+        console.log("SyncPulse PWA Service Worker registered:", reg.scope);
       })
       .catch((err) => {
-        console.warn("Service Worker registration failed:", err);
+        console.warn("SyncPulse Service Worker registration note:", err);
       });
   });
 }

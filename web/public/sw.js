@@ -1,8 +1,9 @@
-const CACHE_NAME = 'syncpulse-v2';
+const CACHE_NAME = 'syncpulse-v3';
 const ASSETS_TO_CACHE = [
   '/',
   '/index.html',
   '/app.js',
+  '/styles.css',
   '/manifest.webmanifest',
   '/icon-192.png'
 ];
@@ -26,7 +27,7 @@ self.addEventListener('activate', (event) => {
 });
 
 self.addEventListener('fetch', (event) => {
-  // Let /api/ requests pass through or handle with client fallback
+  // Let /api/ requests pass through with an offline JSON fallback if disconnected
   if (event.request.url.includes('/api/')) {
     event.respondWith(
       fetch(event.request).catch(() => {

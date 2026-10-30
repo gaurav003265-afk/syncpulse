@@ -162,8 +162,8 @@ export const Navbar: React.FC<NavbarProps> = ({
           </div>
         </div>
 
-        {/* Desktop / Tablet Nav Tabs Bar */}
-        <nav className="hidden sm:flex bg-teal-950 border-t border-teal-800/80 px-4">
+        {/* Desktop / Tablet Nav Tabs Bar (Hidden on Mobile, Visible on Tablet/Desktop) */}
+        <nav className="hidden md:flex bg-teal-950 border-t border-teal-800/80 px-4">
           <div className="max-w-6xl mx-auto w-full flex justify-between">
             {navItems.map((item) => {
               const isActive = activeTab === item.id;
@@ -171,7 +171,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 <button
                   key={item.id}
                   onClick={() => setActiveTab(item.id)}
-                  className={`flex items-center space-x-2 py-3 px-3 text-xs md:text-sm font-medium border-b-2 transition-all ${
+                  className={`flex items-center space-x-2 py-3 px-3.5 text-xs md:text-sm font-medium border-b-2 transition-all cursor-pointer ${
                     isActive
                       ? "border-teal-400 text-teal-200 font-bold bg-teal-900/40"
                       : "border-transparent text-teal-300/80 hover:text-white hover:bg-teal-900/20"
@@ -197,23 +197,23 @@ export const Navbar: React.FC<NavbarProps> = ({
         </nav>
       </header>
 
-      {/* Mobile Bottom Fixed Navigation Bar */}
-      <nav className="sm:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 z-50 shadow-lg pb-safe">
-        <div className="grid grid-cols-6 h-14">
+      {/* Mobile Bottom Fixed Navigation Bar (Visible ONLY on Mobile, Hidden on Tablet/Desktop) */}
+      <nav className="flex md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 z-50 shadow-lg pb-safe select-none">
+        <div className="grid grid-cols-6 h-14 w-full">
           {navItems.map((item) => {
             const isActive = activeTab === item.id;
             return (
               <button
                 key={item.id}
                 onClick={() => setActiveTab(item.id)}
-                className={`flex flex-col items-center justify-center relative transition-colors ${
+                className={`flex flex-col items-center justify-center relative transition-colors touch-manipulation cursor-pointer py-1 ${
                   isActive ? "text-teal-700 font-bold" : "text-slate-500 hover:text-slate-800"
                 }`}
                 aria-label={item.label}
               >
                 {item.icon}
                 <span className="text-[10px] tracking-tight mt-0.5 truncate max-w-[50px] leading-none">
-                  {item.label.split(" ")[0]}
+                  {item.label === "Visit Planner" ? "Visits" : item.label === "Ask Sakhi" ? "Sakhi" : item.label}
                 </span>
                 {item.badge !== undefined && (
                   <span

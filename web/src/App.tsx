@@ -70,7 +70,7 @@ export const App: React.FC = () => {
       />
 
       {/* Main Content Area */}
-      <main className="flex-1 max-w-5xl w-full mx-auto p-3 sm:p-5">
+      <main className="flex-1 max-w-5xl w-full mx-auto p-3 sm:p-5 pb-24 md:pb-8">
         {/* Screen A: Home Dashboard */}
         {activeTab === "home" && (
           <HomeScreen
@@ -121,7 +121,7 @@ export const App: React.FC = () => {
       </main>
 
       {/* Emergency Sticky Footer Ribbon */}
-      <footer className="bg-slate-900 text-slate-400 text-xs py-2 px-4 border-t border-slate-800 text-center z-30">
+      <footer className="bg-slate-900 text-slate-400 text-xs py-2 px-4 border-t border-slate-800 text-center z-30 mb-14 md:mb-0">
         <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-1">
           <span>
             🚨 Medical Emergency: <strong>Dial 108 (Ambulance)</strong> • 102 (Maternal) • PHC Venkatapuram
