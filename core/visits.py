@@ -163,7 +163,7 @@ class VisitManager:
         Clinical urgency ALWAYS dominates distance. Straight-line distance
         is used solely as a secondary convenience tie-breaker within the same tier.
         """
-        ref_date = as_of_date or date(2026, 10, 20)
+        ref_date = as_of_date or date.today()
 
         query = """
             SELECT 
@@ -335,7 +335,7 @@ class VisitManager:
 
     def get_summary_stats(self, as_of_date: Optional[date] = None) -> Dict[str, Any]:
         """Provides summary metrics for status dashboard."""
-        ref_date = as_of_date or date(2026, 10, 20)
+        ref_date = as_of_date or date.today()
         with self._get_connection() as conn:
             cursor = conn.cursor()
             cursor.execute("SELECT COUNT(*) FROM households")

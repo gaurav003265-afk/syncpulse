@@ -23,14 +23,14 @@
   "n_visit_truth_rows": 39,
   "n_visit_pred_rows_in_scope": 39,
   "visit_list_file_present": true,
-  "median_latency_ms_reported": 12.626999999999999,
+  "median_latency_ms_reported": 10.764,
   "footprint_reported": {
     "model_names": [
       "SyncPulse-Deterministic-BM25-Extractive"
     ],
     "model_size_mb": 1.58,
-    "peak_ram_mb": 77.2,
-    "median_latency_ms_cpu": 12.627,
+    "peak_ram_mb": 76.86,
+    "median_latency_ms_cpu": 10.764,
     "offline": true
   }
 }

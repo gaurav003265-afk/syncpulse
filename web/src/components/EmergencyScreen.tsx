@@ -11,12 +11,25 @@ import {
   PhoneForwarded,
   Info,
   Save,
+  MessageSquare,
+  Copy,
+  Volume2,
+  VolumeX,
 } from "lucide-react";
 import { dataService, EmergencyAlert } from "../engine/dataService";
+import {
+  dispatchGsmSms,
+  copyEmergencyPayloadToClipboard,
+  playEmergencySiren,
+  stopEmergencySiren,
+  callEmergency108,
+  callMaternal102,
+} from "../engine/telephony";
 
 export const EmergencyScreen: React.FC = () => {
   const [alerts, setAlerts] = useState<EmergencyAlert[]>(dataService.getAlerts());
   const [showCreateModal, setShowCreateModal] = useState(false);
+  const [isSirenActive, setIsSirenActive] = useState(false);
 
   // Form states
   const [patientName, setPatientName] = useState("");
@@ -27,6 +40,43 @@ export const EmergencyScreen: React.FC = () => {
   const [description, setDescription] = useState("");
   const [formError, setFormError] = useState<string | null>(null);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
+
+  const toggleSiren = () => {
+    if (isSirenActive) {
+      stopEmergencySiren();
+      setIsSirenActive(false);
+    } else {
+      setIsSirenActive(true);
+      playEmergencySiren(8);
+      setTimeout(() => setIsSirenActive(false), 8000);
+    }
+  };
+
+  const handleCopyPayload = async (alt: EmergencyAlert) => {
+    const success = await copyEmergencyPayloadToClipboard({
+      patientName: alt.patient_name,
+      village: alt.village,
+      symptoms: alt.symptoms,
+      phone: alt.contact_phone,
+      severity: alt.severity,
+    });
+    setToastMessage(
+      success
+        ? "✓ Emergency payload copied to clipboard for SMS or radio dispatch."
+        : "⚠️ Clipboard copy failed."
+    );
+    setTimeout(() => setToastMessage(null), 4000);
+  };
+
+  const handleDispatchSms = (alt: EmergencyAlert) => {
+    dispatchGsmSms({
+      patientName: alt.patient_name,
+      village: alt.village,
+      symptoms: alt.symptoms,
+      phone: alt.contact_phone,
+      severity: alt.severity,
+    });
+  };
 
   const villages = dataService.getVillages();
 
@@ -103,8 +153,8 @@ export const EmergencyScreen: React.FC = () => {
           </button>
         </div>
 
-        {/* Real Direct Cellular Hotline Numbers */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 pt-1">
+        {/* Real Direct Cellular Hotline Numbers & Siren */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5 pt-1">
           <a
             href="tel:108"
             className="bg-red-900/60 hover:bg-red-900 border border-red-400/60 rounded-xl p-3 flex items-center justify-between transition group"
@@ -112,8 +162,8 @@ export const EmergencyScreen: React.FC = () => {
             <div className="flex items-center space-x-2.5">
               <Ambulance className="w-5 h-5 text-red-200" />
               <div>
-                <div className="text-xs font-bold">108 Emergency Ambulance</div>
-                <div className="text-[10px] text-red-200">Govt Free Medical Dispatch</div>
+                <div className="text-xs font-bold">108 Ambulance</div>
+                <div className="text-[10px] text-red-200">Govt Free Emergency</div>
               </div>
             </div>
             <PhoneCall className="w-4 h-4 text-white group-hover:scale-110 transition" />
@@ -126,8 +176,8 @@ export const EmergencyScreen: React.FC = () => {
             <div className="flex items-center space-x-2.5">
               <PhoneForwarded className="w-5 h-5 text-red-200" />
               <div>
-                <div className="text-xs font-bold">102 Maternal Referral</div>
-                <div className="text-[10px] text-red-200">Free Mother & Child Transport</div>
+                <div className="text-xs font-bold">102 Maternal</div>
+                <div className="text-[10px] text-red-200">Mother & Child Van</div>
               </div>
             </div>
             <PhoneCall className="w-4 h-4 text-white group-hover:scale-110 transition" />
@@ -141,11 +191,37 @@ export const EmergencyScreen: React.FC = () => {
               <PhoneCall className="w-5 h-5 text-red-200" />
               <div>
                 <div className="text-xs font-bold">PHC Medical Officer</div>
-                <div className="text-[10px] text-red-200">Dr. K. Srinivas (Duty Doctor)</div>
+                <div className="text-[10px] text-red-200">Dr. K. Srinivas</div>
               </div>
             </div>
             <PhoneCall className="w-4 h-4 text-white group-hover:scale-110 transition" />
           </a>
+
+          <button
+            onClick={toggleSiren}
+            className={`border rounded-xl p-3 flex items-center justify-between transition cursor-pointer ${
+              isSirenActive
+                ? "bg-amber-400 text-slate-950 border-amber-500 font-black animate-pulse"
+                : "bg-red-900/60 hover:bg-red-900 border-red-400/60 text-white font-bold"
+            }`}
+            title="Synthesized offline Web Audio siren alarm"
+          >
+            <div className="flex items-center space-x-2.5">
+              {isSirenActive ? (
+                <VolumeX className="w-5 h-5 text-slate-950" />
+              ) : (
+                <Volume2 className="w-5 h-5 text-red-200" />
+              )}
+              <div className="text-left">
+                <div className="text-xs font-bold">
+                  {isSirenActive ? "Stop Siren Alarm" : "Sound Field Siren"}
+                </div>
+                <div className="text-[10px] text-red-200">
+                  {isSirenActive ? "880/1240 Hz Active" : "Zero-Asset Audio Beacon"}
+                </div>
+              </div>
+            </div>
+          </button>
         </div>
       </div>
 
@@ -287,13 +363,31 @@ export const EmergencyScreen: React.FC = () => {
                       Time Logged: {new Date(alt.timestamp).toLocaleString()}
                     </span>
 
-                    <div className="flex items-center space-x-2">
+                    <div className="flex flex-wrap items-center gap-1.5">
+                      <button
+                        onClick={() => handleDispatchSms(alt)}
+                        className="bg-red-600 hover:bg-red-700 text-white px-2.5 py-1 rounded-lg text-xs font-bold flex items-center space-x-1 transition shadow-xs cursor-pointer"
+                        title="Open native SMS pre-filled with patient details for 108"
+                      >
+                        <MessageSquare className="w-3 h-3" />
+                        <span>GSM SMS SOS</span>
+                      </button>
+
+                      <button
+                        onClick={() => handleCopyPayload(alt)}
+                        className="bg-white hover:bg-slate-50 border border-slate-300 text-slate-800 px-2 py-1 rounded-lg text-xs font-semibold flex items-center space-x-1 transition cursor-pointer"
+                        title="Copy GPS coordinates & symptoms to clipboard"
+                      >
+                        <Copy className="w-3 h-3 text-slate-600" />
+                        <span>Copy SOS</span>
+                      </button>
+
                       <a
                         href={`tel:${alt.contact_phone}`}
                         className="bg-white hover:bg-slate-50 border border-slate-300 text-slate-800 px-2.5 py-1 rounded-lg text-xs font-semibold flex items-center space-x-1 transition"
                       >
                         <PhoneCall className="w-3 h-3" />
-                        <span>Call Beneficiary</span>
+                        <span>Call</span>
                       </a>
 
                       {!isResolved && (
@@ -305,9 +399,9 @@ export const EmergencyScreen: React.FC = () => {
                               "Patient stabilized and transferred to CHC."
                             )
                           }
-                          className="bg-emerald-700 hover:bg-emerald-800 text-white px-3 py-1 rounded-lg text-xs font-bold transition shadow-xs"
+                          className="bg-emerald-700 hover:bg-emerald-800 text-white px-2.5 py-1 rounded-lg text-xs font-bold transition shadow-xs cursor-pointer"
                         >
-                          Mark Resolved
+                          Resolve
                         </button>
                       )}
                     </div>

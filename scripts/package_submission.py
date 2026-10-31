@@ -44,6 +44,8 @@ def package():
     # 2. Top-level files per Rule 2
     shutil.copy2(PROJECT_ROOT / "README.md", PACKAGE_ROOT / "README.md")
     shutil.copy2(PROJECT_ROOT / ".gitignore", PACKAGE_ROOT / ".gitignore")
+    if (PROJECT_ROOT / "LICENSE").exists():
+        shutil.copy2(PROJECT_ROOT / "LICENSE", PACKAGE_ROOT / "LICENSE")
 
     # 3. submission/ directory with the exact 3 files
     sub_dst = PACKAGE_ROOT / "submission"
@@ -85,9 +87,9 @@ def package():
         shutil.copytree(
             web_src,
             full_code / "web",
-            ignore=shutil.ignore_patterns("node_modules", ".git", ".next", ".turbo"),
+            ignore=shutil.ignore_patterns("node_modules", "dist", ".git", ".next", ".turbo"),
         )
-        print("Copied web folder into FULL_CODE (excluding node_modules)")
+        print("Copied web folder into FULL_CODE (excluding node_modules and build output)")
 
     # 5. Create final delivery ZIP archive
     zip_path = DIST_DIR / "syncpulse_H5.zip"

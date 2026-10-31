@@ -15,7 +15,9 @@ from typing import Any, Dict, List, Optional, Set, Tuple
 
 import pandas as pd
 
-TODAY = date(2026, 10, 26)
+# Fixed benchmark reference date from protocol 09_VIS (Chandrapuri evaluation)
+BENCHMARK_DATE = date(2026, 10, 26)
+TODAY = BENCHMARK_DATE
 
 ANC_WINDOWS = {
     1: (0, 84),      # ANC-1: opens 0, closes 84

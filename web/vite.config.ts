@@ -19,6 +19,10 @@ export default defineConfig({
       output: {
         entryFileNames: "app.js",
         chunkFileNames: "assets/[name].js",
+        manualChunks: {
+          vendor: ["react", "react-dom"],
+          icons: ["lucide-react"],
+        },
         assetFileNames: (assetInfo) => {
           if (assetInfo.name && assetInfo.name.endsWith(".css")) {
             return "styles.css";

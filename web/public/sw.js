@@ -1,11 +1,19 @@
-const CACHE_NAME = 'syncpulse-v3';
+const CACHE_NAME = 'syncpulse-v4';
 const ASSETS_TO_CACHE = [
   '/',
   '/index.html',
   '/app.js',
   '/styles.css',
   '/manifest.webmanifest',
-  '/icon-192.png'
+  '/icon-192.png',
+  '/assets/icons.js',
+  '/assets/vendor.js',
+  '/assets/database.js',
+  '/assets/HouseholdsScreen.js',
+  '/assets/VisitsScreen.js',
+  '/assets/EmergencyScreen.js',
+  '/assets/StatusScreen.js',
+  '/assets/PatientDetailModal.js'
 ];
 
 self.addEventListener('install', (event) => {

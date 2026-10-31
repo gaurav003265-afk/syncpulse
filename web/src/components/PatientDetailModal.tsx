@@ -13,8 +13,10 @@ import {
   Save,
   X,
   Plus,
+  Baby,
 } from "lucide-react";
 import { dataService, PatientProfile, HouseholdRecord } from "../engine/dataService";
+import { calculateObstetricProfile } from "../engine/maternal";
 
 interface PatientDetailModalProps {
   patientId?: string;
@@ -55,6 +57,20 @@ export const PatientDetailModal: React.FC<PatientDetailModalProps> = ({
   const village = existingPatient?.village || householdRecord?.village || "Rural Village";
   const isHighRisk = existingPatient?.is_high_risk || householdRecord?.is_high_risk;
   const riskTag = existingPatient?.risk_condition || householdRecord?.risk_tag;
+
+  const isMaternal =
+    Boolean(existingPatient?.is_pregnant) ||
+    householdRecord?.beneficiary_type === "Maternal" ||
+    Boolean(householdRecord?.service_name && householdRecord.service_name.toLowerCase().includes("anc"));
+
+  let estimatedLmp = "2026-04-15";
+  if (existingPatient?.edd) {
+    const eddDate = new Date(existingPatient.edd);
+    if (!isNaN(eddDate.getTime())) {
+      estimatedLmp = new Date(eddDate.getTime() - 280 * 24 * 60 * 60 * 1000).toISOString().split("T")[0];
+    }
+  }
+  const obstetricProfile = isMaternal ? calculateObstetricProfile({ lmpDate: estimatedLmp }) : null;
 
   const handleSave = () => {
     setValidationError(null);
@@ -152,6 +168,45 @@ export const PatientDetailModal: React.FC<PatientDetailModalProps> = ({
             <p className="text-[11px] text-red-700 leading-snug">
               Priority protocol mandates bi-weekly monitoring, maternal vitals check, or NRC nutrition follow-up.
             </p>
+          </div>
+        )}
+
+        {/* 2D Obstetric Wheel & ANC Intelligence for Maternal Cohort */}
+        {obstetricProfile && (
+          <div className="bg-teal-50 border border-teal-200 rounded-xl p-3.5 space-y-2.5">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center space-x-2">
+                <Baby className="w-4 h-4 text-teal-700" />
+                <span className="text-xs font-bold text-teal-950">
+                  MoHFW Obstetric Profile (Naegele's Rule)
+                </span>
+              </div>
+              <span className="text-[10px] font-bold bg-teal-200/80 text-teal-900 px-2 py-0.5 rounded">
+                {obstetricProfile.trimesterLabel}
+              </span>
+            </div>
+
+            <div className="grid grid-cols-2 gap-2 text-xs">
+              <div className="bg-white/80 p-2 rounded-lg border border-teal-100">
+                <span className="text-[10px] text-teal-800 font-semibold block">Expected Delivery:</span>
+                <span className="font-bold text-slate-900">{obstetricProfile.eddDate}</span>
+              </div>
+              <div className="bg-white/80 p-2 rounded-lg border border-teal-100">
+                <span className="text-[10px] text-teal-800 font-semibold block">Gestational Age:</span>
+                <span className="font-bold text-slate-900">{obstetricProfile.gestationalAgeFormatted}</span>
+              </div>
+            </div>
+
+            <div className="text-[11px] text-teal-950 bg-white/60 p-2 rounded-lg border border-teal-100/80">
+              <span className="font-bold text-teal-900">
+                Current Due: {obstetricProfile.currentAncMilestone.title}
+              </span>
+              <ul className="list-disc list-inside mt-0.5 space-y-0.5 text-slate-600 text-[10px]">
+                {obstetricProfile.currentAncMilestone.clinicalChecklist.slice(0, 3).map((item, idx) => (
+                  <li key={idx}>{item}</li>
+                ))}
+              </ul>
+            </div>
           </div>
         )}
 

@@ -3,7 +3,7 @@
     "SyncPulse-Deterministic-BM25-Extractive"
   ],
   "model_size_mb": 1.58,
-  "peak_ram_mb": 77.2,
-  "median_latency_ms_cpu": 12.627,
+  "peak_ram_mb": 76.86,
+  "median_latency_ms_cpu": 10.764,
   "offline": true
 }

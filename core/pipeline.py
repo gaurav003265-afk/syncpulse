@@ -18,6 +18,7 @@ from typing import Any, Dict, List, Optional
 
 from core.answer import AnswerComposer, AnswerResult
 from core.escalation import EscalationEngine, EscalationResult
+from core.interfaces import IAnswerComposer, IEscalationEngine, IProtocolRetriever, IScopeClassifier
 from core.model_adapter import (
     BaseOfflineModelAdapter,
     CitationValidator,
@@ -53,11 +54,15 @@ class FrontlineCompanionPipeline:
         knowledge_pack_dir: Optional[str] = None,
         abstain_threshold: float = 1.8,
         adapter: Optional[BaseOfflineModelAdapter] = None,
+        escalation_engine=None,
+        scope_classifier=None,
+        retriever=None,
+        composer=None,
     ):
-        self.escalation_engine = EscalationEngine(rules_path)
-        self.scope_classifier = ScopeClassifier()
-        self.retriever = BM25Retriever(knowledge_pack_dir, abstain_threshold=abstain_threshold)
-        self.composer = AnswerComposer()
+        self.escalation_engine = escalation_engine or EscalationEngine(rules_path)
+        self.scope_classifier = scope_classifier or ScopeClassifier()
+        self.retriever = retriever or BM25Retriever(knowledge_pack_dir, abstain_threshold=abstain_threshold)
+        self.composer = composer or AnswerComposer()
         self.adapter = adapter or LocalQuantizedModelAdapter()
         self.citation_validator = CitationValidator()
         self.citation_validator.load_from_chunks(self.retriever.chunks_data)

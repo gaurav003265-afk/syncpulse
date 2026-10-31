@@ -12,7 +12,7 @@ from __future__ import annotations
 
 import re
 from dataclasses import asdict, dataclass
-from typing import Dict, List, Optional, Set, Tuple
+from typing import Any, Dict, List, Optional, Set, Tuple
 
 from core.normalize import normalize_text, tokenize
 from core.retrieve import STOPWORDS

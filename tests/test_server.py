@@ -118,6 +118,13 @@ def test_api_health_topics():
     assert any("Antenatal Care" in item["title"] for item in data)
 
 
+def test_api_follow_ups_workflow():
+    resp = client.get("/api/follow_ups")
+    assert resp.status_code == 200
+    assert isinstance(resp.json(), list)
+
+
+
 def test_static_pwa_served():
     resp = client.get("/")
     assert resp.status_code == 200

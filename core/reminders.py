@@ -108,13 +108,17 @@ class ReminderService:
                 h.household_id, h.village, h.beneficiary_name, h.beneficiary_type,
                 h.service_code, h.service_name, h.protocol_citation, h.due_date,
                 h.is_high_risk, h.risk_tag,
-                v.visited_at, (v.household_id IS NOT NULL) AS is_completed
+                MAX(v.visited_at) AS visited_at,
+                (MAX(v.visited_at) IS NOT NULL) AS is_completed
             FROM households h
             LEFT JOIN (
                 SELECT household_id, visited_at FROM visit_outcomes
-                UNION
+                UNION ALL
                 SELECT household_id, visited_at FROM visit_actions
             ) v ON h.household_id = v.household_id
+            GROUP BY h.household_id, h.village, h.beneficiary_name, h.beneficiary_type,
+                     h.service_code, h.service_name, h.protocol_citation, h.due_date,
+                     h.is_high_risk, h.risk_tag
             ORDER BY h.is_high_risk DESC, h.due_date ASC
         """
 

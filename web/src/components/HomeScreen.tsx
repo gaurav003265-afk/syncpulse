@@ -14,8 +14,15 @@ import {
   RefreshCw,
   HeartPulse,
   BookOpen,
+  Pill,
+  Baby,
+  Plus,
+  Minus,
+  RotateCcw,
+  Sparkles,
 } from "lucide-react";
-import { dataService, FirstAidTopic } from "../engine/dataService";
+import { dataService, FirstAidTopic, MedicineInventory } from "../engine/dataService";
+import { calculateObstetricProfile, ObstetricProfile } from "../engine/maternal";
 import { NavTab } from "./Navbar";
 
 interface HomeScreenProps {
@@ -33,9 +40,35 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
   const [syncing, setSyncing] = useState(false);
   const [syncFeedback, setSyncFeedback] = useState<string | null>(null);
 
+  // Medicine Kit State
+  const [medStock, setMedStock] = useState<MedicineInventory>(dataService.getMedicineStock());
+
+  // Obstetric Calculator Modal State
+  const [showObstetricModal, setShowObstetricModal] = useState(false);
+  const [lmpInput, setLmpInput] = useState("2026-05-10");
+  const [obsResult, setObsResult] = useState<ObstetricProfile | null>(() =>
+    calculateObstetricProfile({ lmpDate: "2026-05-10" })
+  );
+
   const kpis = dataService.getKPIs();
   const activities = dataService.getActivityLog();
   const firstAidTopics = dataService.getFirstAidTopics();
+
+  const handleAdjustStock = (item: "ifa" | "ors" | "zinc" | "paracetamol", delta: number) => {
+    const updated = dataService.adjustMedicineCount(item, delta);
+    setMedStock(updated);
+  };
+
+  const handleRestockKit = () => {
+    const updated = dataService.restockAllMedicines();
+    setMedStock(updated);
+  };
+
+  const handleLmpChange = (val: string) => {
+    setLmpInput(val);
+    const profile = calculateObstetricProfile({ lmpDate: val });
+    setObsResult(profile);
+  };
 
   const handleQuickSync = async () => {
     setSyncing(true);
@@ -290,6 +323,132 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
         </div>
       </div>
 
+      {/* 4.5. ASHA Field Kit Supplies (Medicine Stock Tracker) */}
+      <div className="bg-white border border-slate-200 rounded-xl p-4 shadow-sm space-y-3">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+          <div className="flex items-center space-x-2">
+            <Pill className="w-4 h-4 text-teal-700" />
+            <h3 className="text-sm font-bold text-slate-900">
+              ASHA Field Kit Supplies (Medicine Ledger)
+            </h3>
+          </div>
+          <div className="flex items-center space-x-2 text-xs">
+            <span className="text-[11px] text-slate-500 hidden sm:inline">Auto-deducted on visit outcomes</span>
+            <button
+              onClick={handleRestockKit}
+              className="text-[11px] font-bold text-teal-700 bg-teal-50 hover:bg-teal-100 border border-teal-200 px-2.5 py-1 rounded-lg flex items-center space-x-1 transition cursor-pointer"
+              title="Restock all medicines to baseline capacity"
+            >
+              <RotateCcw className="w-3 h-3" />
+              <span>Restock All Supplies</span>
+            </button>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5">
+          {([
+            { id: "ifa" as const, item: medStock.ifa, color: "text-purple-700", bg: "bg-purple-50", border: "border-purple-200" },
+            { id: "ors" as const, item: medStock.ors, color: "text-blue-700", bg: "bg-blue-50", border: "border-blue-200" },
+            { id: "zinc" as const, item: medStock.zinc, color: "text-amber-700", bg: "bg-amber-50", border: "border-amber-200" },
+            { id: "paracetamol" as const, item: medStock.paracetamol, color: "text-emerald-700", bg: "bg-emerald-50", border: "border-emerald-200" },
+          ]).map(({ id, item, color, bg, border }) => {
+            const isLow = item.count <= item.lowStockThreshold && item.count > 0;
+            const isEmpty = item.count === 0;
+            return (
+              <div key={id} className={`p-3 rounded-xl border ${border} ${bg} flex flex-col justify-between space-y-2`}>
+                <div className="flex items-start justify-between">
+                  <div>
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-slate-500">
+                      {item.category}
+                    </span>
+                    <h4 className="text-xs font-bold text-slate-900 leading-snug">
+                      {item.name}
+                    </h4>
+                  </div>
+                  <span
+                    className={`text-[9px] font-black px-1.5 py-0.5 rounded ${
+                      isEmpty
+                        ? "bg-red-600 text-white"
+                        : isLow
+                        ? "bg-amber-500 text-slate-950 font-bold"
+                        : "bg-emerald-100 text-emerald-800"
+                    }`}
+                  >
+                    {isEmpty ? "DEPLETED" : isLow ? "LOW STOCK" : "IN STOCK"}
+                  </span>
+                </div>
+
+                <div className="flex items-baseline justify-between pt-1">
+                  <div className="text-xl font-black text-slate-900">
+                    {item.count}{" "}
+                    <span className="text-[11px] font-normal text-slate-500">
+                      / {item.targetCount} {item.unit}
+                    </span>
+                  </div>
+
+                  {/* Quick Adjust Buttons */}
+                  <div className="flex items-center space-x-1">
+                    <button
+                      onClick={() => handleAdjustStock(id, -1)}
+                      className="w-6 h-6 rounded bg-white hover:bg-slate-100 border border-slate-300 text-slate-700 flex items-center justify-center font-bold text-xs transition cursor-pointer"
+                      title="Deduct 1 unit"
+                    >
+                      <Minus className="w-3 h-3" />
+                    </button>
+                    <button
+                      onClick={() => handleAdjustStock(id, 1)}
+                      className="w-6 h-6 rounded bg-white hover:bg-slate-100 border border-slate-300 text-slate-700 flex items-center justify-center font-bold text-xs transition cursor-pointer"
+                      title="Add 1 unit"
+                    >
+                      <Plus className="w-3 h-3" />
+                    </button>
+                  </div>
+                </div>
+
+                {/* Stock Level Bar */}
+                <div className="w-full bg-slate-200/80 rounded-full h-1.5 overflow-hidden">
+                  <div
+                    className={`h-full transition-all ${
+                      isEmpty ? "bg-red-500" : isLow ? "bg-amber-500" : "bg-emerald-600"
+                    }`}
+                    style={{ width: `${Math.min(100, Math.round((item.count / item.targetCount) * 100))}%` }}
+                  />
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* 4.6. Obstetric Wheel & Gestational Tool */}
+      <div className="bg-gradient-to-r from-teal-50 to-emerald-50 border border-teal-200 rounded-xl p-4 shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div className="flex items-center space-x-3">
+          <div className="w-10 h-10 rounded-xl bg-teal-600 text-white flex items-center justify-center shrink-0 shadow-xs">
+            <Baby className="w-5 h-5" />
+          </div>
+          <div>
+            <div className="flex items-center space-x-2">
+              <h4 className="text-sm font-bold text-teal-950">
+                MoHFW Obstetric Wheel & EDD Tool
+              </h4>
+              <span className="text-[10px] bg-teal-200/80 text-teal-900 font-bold px-1.5 py-0.5 rounded">
+                Naegele's Rule
+              </span>
+            </div>
+            <p className="text-xs text-teal-800/90 mt-0.5">
+              Instant Expected Date of Delivery, gestational age, and trimester ANC milestones.
+            </p>
+          </div>
+        </div>
+        <button
+          onClick={() => setShowObstetricModal(true)}
+          className="bg-teal-700 hover:bg-teal-800 text-white text-xs font-bold px-3.5 py-2 rounded-lg transition shadow-xs flex items-center justify-center space-x-1.5 cursor-pointer shrink-0"
+        >
+          <Sparkles className="w-3.5 h-3.5" />
+          <span>Launch Obstetric Wheel</span>
+        </button>
+      </div>
+
       {/* 5. The Cure Window — Approved First-Aid Guides */}
       <div className="bg-white border border-slate-200 rounded-xl p-4 shadow-sm space-y-3">
         <div className="flex items-center justify-between">
@@ -450,6 +609,137 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                 className="bg-slate-800 hover:bg-slate-900 text-white font-semibold px-4 py-1.5 rounded-lg text-xs transition"
               >
                 Close Protocol
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* 8. MoHFW Obstetric Wheel & EDD Calculation Modal (2D Clean Medical Interface) */}
+      {showObstetricModal && (
+        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-3 z-50">
+          <div className="bg-white rounded-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-slate-200 p-5 space-y-4">
+            <div className="flex items-start justify-between border-b border-slate-200 pb-3">
+              <div className="flex items-center space-x-2.5">
+                <div className="p-2 bg-teal-100 rounded-lg text-teal-800">
+                  <Baby className="w-5 h-5" />
+                </div>
+                <div>
+                  <h3 className="text-base font-bold text-slate-900">
+                    MoHFW Obstetric Wheel & EDD Tool
+                  </h3>
+                  <span className="text-[11px] text-slate-500 font-medium">
+                    Naegele’s Rule (LMP + 280 Days) • 100% Offline
+                  </span>
+                </div>
+              </div>
+              <button
+                onClick={() => setShowObstetricModal(false)}
+                className="text-slate-400 hover:text-slate-700 text-lg font-bold p-1 leading-none"
+                aria-label="Close"
+              >
+                ✕
+              </button>
+            </div>
+
+            {/* Input Form */}
+            <div className="space-y-3 bg-slate-50 p-3.5 rounded-xl border border-slate-200">
+              <div>
+                <label className="block text-xs font-bold text-slate-700 mb-1">
+                  Last Menstrual Period (LMP Date):
+                </label>
+                <input
+                  type="date"
+                  value={lmpInput}
+                  onChange={(e) => handleLmpChange(e.target.value)}
+                  className="w-full text-xs font-semibold px-3 py-2 border border-slate-300 rounded-lg bg-white focus:outline-teal-600"
+                />
+              </div>
+            </div>
+
+            {/* Calculation Output Cards */}
+            {obsResult ? (
+              <div className="space-y-3">
+                <div className="grid grid-cols-2 gap-2.5">
+                  <div className="bg-teal-50 border border-teal-200 p-3 rounded-xl">
+                    <span className="text-[10px] font-bold text-teal-800 uppercase tracking-wider">
+                      Expected Delivery (EDD)
+                    </span>
+                    <div className="text-lg font-black text-teal-950 mt-0.5">
+                      {obsResult.eddDate}
+                    </div>
+                    <span className="text-[10px] text-teal-700 font-medium">Naegele's 40 Weeks</span>
+                  </div>
+
+                  <div className="bg-emerald-50 border border-emerald-200 p-3 rounded-xl">
+                    <span className="text-[10px] font-bold text-emerald-800 uppercase tracking-wider">
+                      Gestational Age
+                    </span>
+                    <div className="text-lg font-black text-emerald-950 mt-0.5">
+                      {obsResult.gestationalAgeFormatted}
+                    </div>
+                    <span className="text-[10px] text-emerald-700 font-medium">
+                      {obsResult.trimesterLabel}
+                    </span>
+                  </div>
+                </div>
+
+                {/* Current ANC Milestone Banner */}
+                <div className="bg-slate-50 border border-slate-200 rounded-xl p-3.5 space-y-2">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center space-x-1.5">
+                      <span className="bg-teal-700 text-white font-bold text-[10px] px-2 py-0.5 rounded">
+                        {obsResult.currentAncMilestone.milestone}
+                      </span>
+                      <h4 className="text-xs font-bold text-slate-900">
+                        {obsResult.currentAncMilestone.title}
+                      </h4>
+                    </div>
+                    <span className="text-[10px] font-medium text-slate-500">
+                      Window: {obsResult.currentAncMilestone.targetWindowWeeks}
+                    </span>
+                  </div>
+
+                  <div className="text-xs text-slate-700">
+                    <span className="font-semibold text-slate-800">MoHFW Clinical Checklist:</span>
+                    <ul className="list-disc list-inside mt-1 space-y-0.5 text-slate-600 text-[11px]">
+                      {obsResult.currentAncMilestone.clinicalChecklist.map((item, idx) => (
+                        <li key={idx}>{item}</li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+
+                {/* High-Risk Detection Alert */}
+                {obsResult.isHighRisk && (
+                  <div className="p-3 bg-red-50 border border-red-300 rounded-xl text-xs space-y-1">
+                    <div className="flex items-center space-x-1.5 text-red-700 font-bold">
+                      <AlertTriangle className="w-4 h-4" />
+                      <span>High-Risk Pregnancy Factors:</span>
+                    </div>
+                    <ul className="list-disc list-inside text-red-900 text-[11px]">
+                      {obsResult.highRiskFactors.map((f, idx) => (
+                        <li key={idx}>{f}</li>
+                      ))}
+                    </ul>
+                    <div className="text-[11px] font-bold text-red-800 pt-1 border-t border-red-200">
+                      {obsResult.recommendedAction}
+                    </div>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <div className="text-center py-6 text-slate-400 text-xs">
+                Enter a valid LMP date above to calculate obstetric milestones.
+              </div>
+            )}
+
+            <div className="flex justify-end pt-2 border-t border-slate-100">
+              <button
+                onClick={() => setShowObstetricModal(false)}
+                className="bg-teal-700 hover:bg-teal-800 text-white font-semibold px-4 py-2 rounded-xl text-xs transition"
+              >
+                Close Calculator
               </button>
             </div>
           </div>

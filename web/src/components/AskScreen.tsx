@@ -21,10 +21,18 @@ import {
   Edit3,
   Check,
   Save,
+  MessageSquare,
+  Copy,
 } from "lucide-react";
 import { dataService } from "../engine/dataService";
 import { PipelineTS, PipelineResponseTS } from "../engine/pipeline";
 import { validateTranscriptTS } from "../engine/speech";
+import {
+  dispatchGsmSms,
+  copyEmergencyPayloadToClipboard,
+  playEmergencySiren,
+  stopEmergencySiren,
+} from "../engine/telephony";
 import { NavTab } from "./Navbar";
 
 export type SupportedLanguage = "en" | "te" | "hi";
@@ -126,6 +134,41 @@ export const AskScreen: React.FC<AskScreenProps> = ({
   const [isSpeaking, setIsSpeaking] = useState(false);
   const [ttsSupported, setTtsSupported] = useState(false);
   const [recordedEmergencyId, setRecordedEmergencyId] = useState<string | null>(null);
+
+  // Multi-Channel Emergency Dispatch & Siren States
+  const [isSirenActive, setIsSirenActive] = useState(false);
+  const [sosFeedback, setSosFeedback] = useState<string | null>(null);
+
+  const toggleSiren = () => {
+    if (isSirenActive) {
+      stopEmergencySiren();
+      setIsSirenActive(false);
+    } else {
+      setIsSirenActive(true);
+      playEmergencySiren(8);
+      setTimeout(() => setIsSirenActive(false), 8000);
+    }
+  };
+
+  const handleCopySos = async (text: string) => {
+    const success = await copyEmergencyPayloadToClipboard({
+      patientName: "Emergency Query Alert",
+      village: "Community Field",
+      symptoms: text.slice(0, 80),
+      severity: "CRITICAL",
+    });
+    setSosFeedback(success ? "✓ Emergency payload copied to clipboard for SMS or radio dispatch." : "⚠️ Copy failed.");
+    setTimeout(() => setSosFeedback(null), 4000);
+  };
+
+  const handleDispatchSms = (text: string) => {
+    dispatchGsmSms({
+      patientName: "Emergency Query Alert",
+      village: "Community Field",
+      symptoms: text.slice(0, 80),
+      severity: "CRITICAL",
+    });
+  };
 
   const recognitionRef = useRef<any>(null);
   const timerRef = useRef<any>(null);
@@ -727,24 +770,62 @@ export const AskScreen: React.FC<AskScreenProps> = ({
                 </p>
               </div>
 
-              {/* Direct 108 Emergency Call Button */}
-              <div className="flex flex-col sm:flex-row items-center gap-2 pt-1">
+              {/* Multi-Channel Emergency Dispatch Actions */}
+              <div className="flex flex-wrap items-center gap-2 pt-1">
                 <a
                   href="tel:108"
-                  className="w-full sm:w-auto flex-1 bg-red-600 hover:bg-red-700 text-white font-bold py-2.5 px-4 rounded-xl text-center shadow-sm flex items-center justify-center space-x-2 transition"
+                  className="flex-1 min-w-[140px] bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-3 rounded-xl text-center shadow-sm flex items-center justify-center space-x-1.5 transition text-xs"
                 >
-                  <PhoneCall className="w-4 h-4" />
-                  <span>Call 108 Ambulance Now</span>
+                  <PhoneCall className="w-3.5 h-3.5" />
+                  <span>Call 108 Ambulance</span>
                 </a>
+
+                <button
+                  onClick={() => handleDispatchSms(result.text)}
+                  className="bg-red-800 hover:bg-red-900 text-white font-bold py-2 px-3 rounded-xl text-center shadow-sm flex items-center justify-center space-x-1.5 transition text-xs cursor-pointer"
+                  title="Open native SMS intent for 108 emergency dispatch"
+                >
+                  <MessageSquare className="w-3.5 h-3.5" />
+                  <span>GSM SMS SOS</span>
+                </button>
+
+                <button
+                  onClick={() => handleCopySos(result.text)}
+                  className="bg-white hover:bg-slate-50 border border-slate-300 text-slate-800 font-bold py-2 px-2.5 rounded-xl text-center shadow-xs flex items-center justify-center space-x-1 transition text-xs cursor-pointer"
+                  title="Copy emergency details to clipboard"
+                >
+                  <Copy className="w-3.5 h-3.5 text-slate-600" />
+                  <span>Copy SOS</span>
+                </button>
+
+                <button
+                  onClick={toggleSiren}
+                  className={`font-bold py-2 px-2.5 rounded-xl text-center shadow-xs flex items-center justify-center space-x-1 transition text-xs cursor-pointer ${
+                    isSirenActive
+                      ? "bg-amber-400 text-slate-950 font-black animate-pulse"
+                      : "bg-red-100 hover:bg-red-200 text-red-900 border border-red-300"
+                  }`}
+                  title="Synthesized Web Audio emergency siren"
+                >
+                  <Volume2 className="w-3.5 h-3.5" />
+                  <span>{isSirenActive ? "Stop Siren" : "Sound Siren"}</span>
+                </button>
+
                 {setActiveTab && (
                   <button
                     onClick={() => setActiveTab("emergency")}
-                    className="w-full sm:w-auto bg-white hover:bg-red-50 text-red-700 border border-red-300 font-bold py-2.5 px-4 rounded-xl text-xs transition"
+                    className="bg-white hover:bg-red-50 text-red-700 border border-red-300 font-bold py-2 px-3 rounded-xl text-xs transition"
                   >
-                    Open in Emergency Desk
+                    Open Desk
                   </button>
                 )}
               </div>
+
+              {sosFeedback && (
+                <div className="text-[11px] font-medium text-emerald-800 bg-emerald-50 border border-emerald-200 p-2 rounded-lg">
+                  {sosFeedback}
+                </div>
+              )}
 
               {/* Protocol Citation */}
               {result.primary_citation && (

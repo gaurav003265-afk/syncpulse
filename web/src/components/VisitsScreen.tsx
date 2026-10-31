@@ -1124,6 +1124,12 @@ export const VisitsScreen: React.FC<VisitsScreenProps> = ({
                         className="w-1/2 bg-white border border-slate-300 rounded p-1.5 text-xs text-slate-900"
                       />
                     </div>
+                    {(Number(bpSystolic) >= 140 || Number(bpDiastolic) >= 90) && bpSystolic && bpDiastolic && (
+                      <div className="mt-1 flex items-center space-x-1.5 bg-red-50 border border-red-300 rounded p-1.5 text-[11px] text-red-800 animate-in fade-in">
+                        <AlertTriangle className="w-3.5 h-3.5 shrink-0 text-red-600" />
+                        <span><strong>High BP (≥140/90):</strong> Gestational/essential hypertension flag. Refer to PHC Medical Officer.</span>
+                      </div>
+                    )}
                   </div>
 
                   <div>
@@ -1182,6 +1188,12 @@ export const VisitsScreen: React.FC<VisitsScreenProps> = ({
                     />
                   </div>
                 </div>
+                {Number(muac) > 0 && Number(muac) < 115 && (
+                  <div className="flex items-center space-x-1.5 bg-red-50 border border-red-300 rounded p-1.5 text-[11px] text-red-800 animate-in fade-in">
+                    <AlertTriangle className="w-3.5 h-3.5 shrink-0 text-red-600" />
+                    <span><strong>SAM Alert (MUAC &lt; 115mm):</strong> Severe Acute Malnutrition detected. Immediate referral to Nutrition Rehabilitation Centre (NRC) required.</span>
+                  </div>
+                )}
               </div>
 
               {/* Service Outcome Notes */}

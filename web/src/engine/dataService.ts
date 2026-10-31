@@ -19,6 +19,7 @@ import {
   generateMonthlyRemindersTS,
   MonthlyReminderTS,
 } from "./reminders";
+import type { AshaWorkerRecord } from "./database";
 
 export interface HouseholdRecord {
   household_id: string;
@@ -178,6 +179,68 @@ const KEY_FOLLOW_UPS = `${STORAGE_PREFIX}follow_ups`;
 const KEY_OUTBOX = `${STORAGE_PREFIX}outbox`;
 const KEY_ACTIVITY = `${STORAGE_PREFIX}activity`;
 const KEY_LAST_SYNC = `${STORAGE_PREFIX}last_sync`;
+const KEY_MEDICINE = `${STORAGE_PREFIX}medicine_stock`;
+
+export interface MedicineItem {
+  id: "ifa" | "ors" | "zinc" | "paracetamol";
+  name: string;
+  category: string;
+  count: number;
+  unit: string;
+  targetCount: number;
+  lowStockThreshold: number;
+  indication: string;
+}
+
+export interface MedicineInventory {
+  ifa: MedicineItem;
+  ors: MedicineItem;
+  zinc: MedicineItem;
+  paracetamol: MedicineItem;
+}
+
+const DEFAULT_MEDICINE_STOCK: MedicineInventory = {
+  ifa: {
+    id: "ifa",
+    name: "IFA Tablets",
+    category: "Maternal / Anemia",
+    count: 150,
+    unit: "tablets",
+    targetCount: 150,
+    lowStockThreshold: 30,
+    indication: "Iron & Folic Acid 100mg for pregnant & anemic mothers",
+  },
+  ors: {
+    id: "ors",
+    name: "ORS Packets",
+    category: "Pediatric / Dehydration",
+    count: 20,
+    unit: "packets",
+    targetCount: 20,
+    lowStockThreshold: 5,
+    indication: "WHO standard low-osmolarity 1-litre formulation",
+  },
+  zinc: {
+    id: "zinc",
+    name: "Zinc 20mg",
+    category: "Pediatric / Diarrhea",
+    count: 50,
+    unit: "tablets",
+    targetCount: 50,
+    lowStockThreshold: 14,
+    indication: "14-day therapeutic dispersible course for diarrhea",
+  },
+  paracetamol: {
+    id: "paracetamol",
+    name: "Paracetamol 500mg",
+    category: "General / Fever",
+    count: 30,
+    unit: "tablets",
+    targetCount: 30,
+    lowStockThreshold: 10,
+    indication: "Symptomatic fever and mild analgesic relief",
+  },
+};
 
 class DataService {
   private households: HouseholdRecord[] = [];
@@ -185,6 +248,7 @@ class DataService {
   private alerts: EmergencyAlert[] = [];
   private followUps: FollowUpTask[] = [];
   private firstAid: FirstAidTopic[] = [];
+  private medicineStock: MedicineInventory = DEFAULT_MEDICINE_STOCK;
 
   constructor() {
     this.initData();
@@ -281,6 +345,53 @@ class DataService {
 
     // 5. First Aid (read-only clinical guides)
     this.firstAid = initialFirstAid as unknown as FirstAidTopic[];
+
+    // 6. ASHA Field Kit Medicine Inventory
+    const storedMeds = this.safeGetItem<MedicineInventory | null>(KEY_MEDICINE, null);
+    if (storedMeds && storedMeds.ifa && storedMeds.ors && storedMeds.zinc && storedMeds.paracetamol) {
+      this.medicineStock = storedMeds;
+    } else {
+      this.medicineStock = { ...DEFAULT_MEDICINE_STOCK };
+      this.safeSetItem(KEY_MEDICINE, this.medicineStock);
+    }
+  }
+
+  // --- ASHA FIELD KIT MEDICINE INVENTORY METHODS ---
+  public getMedicineStock(): MedicineInventory {
+    return { ...this.medicineStock };
+  }
+
+  public updateMedicineCount(
+    id: "ifa" | "ors" | "zinc" | "paracetamol",
+    newCount: number
+  ): MedicineInventory {
+    if (this.medicineStock[id]) {
+      this.medicineStock[id].count = Math.max(0, Math.floor(newCount));
+      this.safeSetItem(KEY_MEDICINE, this.medicineStock);
+    }
+    return this.getMedicineStock();
+  }
+
+  public adjustMedicineCount(
+    id: "ifa" | "ors" | "zinc" | "paracetamol",
+    delta: number
+  ): MedicineInventory {
+    if (this.medicineStock[id]) {
+      const current = this.medicineStock[id].count;
+      return this.updateMedicineCount(id, current + delta);
+    }
+    return this.getMedicineStock();
+  }
+
+  public restockAllMedicines(): MedicineInventory {
+    this.medicineStock = {
+      ifa: { ...DEFAULT_MEDICINE_STOCK.ifa, count: DEFAULT_MEDICINE_STOCK.ifa.targetCount },
+      ors: { ...DEFAULT_MEDICINE_STOCK.ors, count: DEFAULT_MEDICINE_STOCK.ors.targetCount },
+      zinc: { ...DEFAULT_MEDICINE_STOCK.zinc, count: DEFAULT_MEDICINE_STOCK.zinc.targetCount },
+      paracetamol: { ...DEFAULT_MEDICINE_STOCK.paracetamol, count: DEFAULT_MEDICINE_STOCK.paracetamol.targetCount },
+    };
+    this.safeSetItem(KEY_MEDICINE, this.medicineStock);
+    return this.getMedicineStock();
   }
 
   // --- REPEATABLE REGISTER IMPORTER ---
@@ -545,6 +656,21 @@ class DataService {
       follow_up_task: followUpTask,
     });
 
+    // Auto-deduct distributed supplies from ASHA Field Kit
+    const combinedService = (updated.service_name + " " + noteText).toLowerCase();
+    if (combinedService.includes("ifa") || combinedService.includes("iron")) {
+      this.adjustMedicineCount("ifa", -30);
+    }
+    if (combinedService.includes("ors") || combinedService.includes("rehydration")) {
+      this.adjustMedicineCount("ors", -2);
+    }
+    if (combinedService.includes("zinc")) {
+      this.adjustMedicineCount("zinc", -14);
+    }
+    if (combinedService.includes("paracetamol") || combinedService.includes("pcm")) {
+      this.adjustMedicineCount("paracetamol", -10);
+    }
+
     return updated;
   }
 
@@ -684,25 +810,27 @@ class DataService {
     return true;
   }
 
-  public getMonthlyReminders(asOfDateStr = "2026-10-20"): MonthlyReminderTS[] {
+  public getMonthlyReminders(asOfDateStr?: string): MonthlyReminderTS[] {
+    const effectiveDate = asOfDateStr || new Date().toISOString().slice(0, 10);
     const completedMap = new Map<string, { visited_at: string; notes?: string }>();
     for (const h of this.households) {
       if (h.visited) {
         completedMap.set(h.household_id, {
-          visited_at: h.visited_at || asOfDateStr,
+          visited_at: h.visited_at || effectiveDate,
           notes: h.visit_notes || undefined,
         });
       }
     }
-    return generateMonthlyRemindersTS(this.households, completedMap, asOfDateStr);
+    return generateMonthlyRemindersTS(this.households, completedMap, effectiveDate);
   }
 
-  public getFollowUpGaps(asOfDateStr = "2026-10-20"): FollowUpGapTS[] {
+  public getFollowUpGaps(asOfDateStr?: string): FollowUpGapTS[] {
+    const effectiveDate = asOfDateStr || new Date().toISOString().slice(0, 10);
     const hhMap = new Map<string, HouseholdRecord>();
     for (const h of this.households) {
       hhMap.set(h.household_id, h);
     }
-    return detectFollowUpGapsTS(this.followUps, hhMap, asOfDateStr);
+    return detectFollowUpGapsTS(this.followUps, hhMap, effectiveDate);
   }
 
   public completeFollowUpTask(followUpId: string, notes?: string): boolean {
@@ -1095,8 +1223,9 @@ class DataService {
   }
 
   // --- KPIS ---
-  public getKPIs(asOfDateStr = "2026-10-20") {
-    const asOf = new Date(asOfDateStr);
+  public getKPIs(asOfDateStr?: string) {
+    const effectiveDate = asOfDateStr || new Date().toISOString().slice(0, 10);
+    const asOf = new Date(effectiveDate);
     asOf.setHours(0, 0, 0, 0);
 
     let todayDue = 0;
@@ -1140,6 +1269,55 @@ class DataService {
     };
   }
 
+
+  public async loginAshaWorker(
+    workerId: string,
+    pin: string
+  ): Promise<{ success: boolean; worker?: AshaWorkerRecord; error?: string }> {
+    try {
+      const { sqliteDB, hashCredentials } = await import("./database");
+      await sqliteDB.init();
+      const workers = sqliteDB.getTable<AshaWorkerRecord>("asha_workers");
+      const worker = workers.find((w) => w.id === workerId.toUpperCase().trim());
+      if (!worker) {
+        return { success: false, error: "Worker ID not found in local register." };
+      }
+      const computedHash = await hashCredentials(pin, worker.salt);
+      if (computedHash !== worker.pin_hash) {
+        return { success: false, error: "Incorrect Security PIN. Please try again." };
+      }
+      this.logActivity({
+        type: "profile",
+        title: "ASHA Worker Login",
+        description: `ASHA Worker ${worker.name} authenticated locally.`,
+      });
+      return { success: true, worker };
+    } catch (err: any) {
+      return { success: false, error: "Local authentication error. Please retry." };
+    }
+  }
+
+  public async registerPatient(
+    patient: PatientProfile
+  ): Promise<{ success: boolean; error?: string }> {
+    try {
+      const existing = this.patients.find((p) => p.patient_id === patient.patient_id);
+      if (existing) {
+        return { success: false, error: "Patient ID already exists in local register." };
+      }
+      this.patients.unshift(patient);
+      this.safeSetItem(KEY_PATIENTS, this.patients);
+      this.queueOutbox("patient", patient.patient_id, "create", patient);
+      this.logActivity({
+        type: "profile",
+        title: "New Patient Registered",
+        description: `New patient ${patient.name} registered in local SQLite.`,
+      });
+      return { success: true };
+    } catch (err: any) {
+      return { success: false, error: "Failed to register patient locally." };
+    }
+  }
   // --- DEMO STATE RESET ---
   public resetToDemoState(): void {
     // 1. Re-seed households from initial 500 synthetic records
@@ -1192,7 +1370,10 @@ class DataService {
     this.safeSetItem(KEY_OUTBOX, []);
     this.safeSetItem(KEY_LAST_SYNC, null);
 
-    // 6. Reset activity log
+    // 6. Reset ASHA Field Kit supplies to 100% capacity
+    this.restockAllMedicines();
+
+    // 7. Reset activity log
     this.safeSetItem(KEY_ACTIVITY, [
       {
         id: "act-demo-reset",

@@ -24,6 +24,7 @@ from __future__ import annotations
 
 import json
 import os
+import threading
 from datetime import date, datetime, timezone
 from pathlib import Path
 from typing import Any, Dict, List, Optional
@@ -42,6 +43,8 @@ from core.visits import VisitItem, VisitManager
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 SYNCPULSE_DATA_DIR = PROJECT_ROOT / "data" / "syncpulse"
+
+_json_lock = threading.Lock()
 
 # Initialize core services & data repositories
 pipeline = FrontlineCompanionPipeline()
@@ -163,16 +166,19 @@ class SyncRequest(BaseModel):
 # Helper data loaders
 def _load_json(filename: str) -> List[Dict[str, Any]]:
     p = SYNCPULSE_DATA_DIR / filename
-    if p.exists():
-        with open(p, "r", encoding="utf-8") as f:
-            return json.load(f)
+    with _json_lock:
+        if p.exists():
+            with open(p, "r", encoding="utf-8") as f:
+                return json.load(f)
     return []
 
 
 def _save_json(filename: str, data: Any):
     p = SYNCPULSE_DATA_DIR / filename
-    with open(p, "w", encoding="utf-8") as f:
-        json.dump(data, f, indent=2)
+    with _json_lock:
+        p.parent.mkdir(parents=True, exist_ok=True)
+        with open(p, "w", encoding="utf-8") as f:
+            json.dump(data, f, indent=2)
 
 
 # ==============================================================================
@@ -284,7 +290,7 @@ def api_get_visits(
     Clinical urgency strictly dominates distance. Straight-line distance via Haversine
     serves as a secondary convenience tie-breaker within the same clinical priority.
     """
-    ref_d = date.fromisoformat(as_of_date) if as_of_date else date(2026, 10, 20)
+    ref_d = date.fromisoformat(as_of_date) if as_of_date else date.today()
     items: List[VisitItem] = visit_mgr.get_visit_list(
         as_of_date=ref_d,
         village=village,
@@ -326,17 +332,6 @@ def api_get_reminders(as_of_date: Optional[str] = None):
         "follow_up_gaps": [g.to_dict() for g in gaps],
         "notification_channel": "LOCAL_DEVICE_ONLY",
     }
-
-
-@app.post("/api/follow_ups/{follow_up_id}/complete", response_model=Dict[str, Any])
-def api_complete_follow_up(follow_up_id: str, req: CompleteFollowUpRequest):
-    """
-    Marks an overdue or pending follow-up task as completed with completion notes.
-    """
-    success = repo.complete_follow_up(follow_up_id, req.completion_notes or "")
-    if not success:
-        raise HTTPException(status_code=404, detail="Follow-up task not found")
-    return {"status": "success", "follow_up_id": follow_up_id, "status_value": "COMPLETED"}
 
 
 @app.post("/api/visits/{household_id}/record", response_model=Dict[str, Any])

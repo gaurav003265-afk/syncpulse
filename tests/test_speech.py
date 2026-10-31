@@ -49,3 +49,12 @@ def test_routine_voice_queries():
     res_tika = validate_transcript("Pillalaki pentavalent tika eppudu ivvali")
     assert res_tika.is_understandable is True
     assert res_tika.status == "valid"
+
+
+def test_transcript_validation_to_dict_and_typing():
+    res = validate_transcript("Seven months pregnant woman heavy bleeding")
+    d = res.to_dict()
+    assert isinstance(d, dict)
+    assert d["is_understandable"] is True
+    assert d["status"] == "valid"
+
