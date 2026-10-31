@@ -1,0 +1,4 @@
+TOML
+
+[tool.vercel]
+entrypoint="server.main:app"
